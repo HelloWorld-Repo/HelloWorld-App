@@ -1,28 +1,12 @@
-import 'react-native-gesture-handler';
-
 import * as React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
+import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+import App from './src/App';
+import theme from './src/styles/theme';
 
-import Home from './src/screens/Home';
-import SafeAreaAndroid from './src/components/SafeAreaAndroid';
-
-const Stack = createStackNavigator();
-
-const HomeScreen = () => {
-  return ( 
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Home"
-        headerMode="none"
-      >
-        <Stack.Screen 
-          name="Home"
-          component={Home}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
-  )
+export default function Main() {
+    return (
+      <PaperProvider theme={theme}>
+        <App />
+      </PaperProvider>
+    );
 }
-
-export default HomeScreen;
