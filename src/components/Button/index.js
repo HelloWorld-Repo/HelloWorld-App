@@ -7,23 +7,23 @@ import AwesomeButton from "react-native-really-awesome-button";
 import styles from "./index.style";
 
 const Button = ({ text, width, containerStyles, outlined, onClick }) => {
-  const [sound, setSound] = React.useState();
+  const [audio, setAudio] = React.useState();
   const theme = useTheme();
 
   useEffect(() => {
-    return sound
+    return audio
       ? () => {
-          sound.unloadAsync();
+          audio.unloadAsync();
         }
       : undefined;
-  }, [sound]);
+  }, [audio]);
 
-  async function playSound() {
+  const playSound = async() => {
     const { sound } = await Audio.Sound.createAsync(
       require("../../../assets/sounds/click-button.wav")
     );
-    setSound(sound);
-    await sound.playAsync();
+    setAudio(sound);
+    sound.playAsync();
   }
 
   const handlePress = async () => {
