@@ -9,9 +9,9 @@ const styles = StyleSheet.create({
     },
 });
 
-const SafeAreaAndroid = ({children, style, ...props}) => {
+const SafeAreaAndroid = ({styleSafeArea, children, ...props}) => {
     return (
-        <SafeAreaView style={{ ...styles['AndroidSafeArea'], ...style }} {...props}>{children}</SafeAreaView>
+        <SafeAreaView style={{...styles.AndroidSafeArea, ...styleSafeArea }} {...props}>{children}</SafeAreaView>
     )
 }
 

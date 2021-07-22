@@ -1,23 +1,25 @@
 import { StyleSheet } from "react-native";
 import fonts from "../../styles/fonts";
+import theme from "../../styles/theme";
 
-const style = StyleSheet.create({
-
-    titleDecorated: theme => ({
-        color: theme.colors.primary,
-        fontFamily: fonts.titleSolidRegular
-    }),
-
-    title: theme => ({
+const styles = StyleSheet.create({
+    title: ({
         color: theme.colors.secondary,
-        fontFamily: fonts.sampleText
+        fontSize: 40,
+        fontFamily: fonts.sampleText,
+        lineHeight: 50
     }),
-
-    container: {
+    titleDecorated: ({
+        color: theme.colors.primary,
+        fontFamily: fonts.titleSolidRegular,
+        fontSize: 40,
+        lineHeight: 50
+    }),
+    container: ({
         alignItems: "center",
-        marginTop: '100px'
-    }
-
+        marginTop: 150,
+        marginBottom: 125,
+    })
 });
 
-export default style;
+export default styles;

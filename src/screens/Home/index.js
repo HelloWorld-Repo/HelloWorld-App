@@ -1,23 +1,22 @@
 import React from 'react'
-import { Text } from 'react-native'
 import { Title, useTheme } from 'react-native-paper'
 import SafeAreaAndroid from '../../components/SafeAreaAndroid'
-import style from './index.style'
+import styles from './index.style'
 
 const Home = () => {
 
     const theme = useTheme();
 
     return (
-        <SafeAreaAndroid style={style.container}>
-            <Title style={style.title(theme)}>
+        <SafeAreaAndroid styleSafeArea={styles.container}>
+            <Title style={styles.title}>
                 Seja bem-vindo(a) ao
             </Title>
-            <Title style={style.titleDecorated(theme)}>
+            <Title style={styles.titleDecorated}>
                 {`<HelloWorld/>`}
             </Title>
         </SafeAreaAndroid>
     )
 }
 
-export default Home
+export default Home;
