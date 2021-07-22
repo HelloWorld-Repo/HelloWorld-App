@@ -1,20 +1,23 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Text } from 'react-native'
+import { Title, useTheme } from 'react-native-paper'
 import SafeAreaAndroid from '../../components/SafeAreaAndroid'
+import style from './index.style'
 
-const Home = props => {
+const Home = () => {
+
+    const theme = useTheme();
+
     return (
-        <SafeAreaAndroid>
-            <Text>
-                HOME 
-            </Text>
+        <SafeAreaAndroid style={style.container}>
+            <Title style={style.title(theme)}>
+                Seja bem-vindo(a) ao
+            </Title>
+            <Title style={style.titleDecorated(theme)}>
+                {`<HelloWorld/>`}
+            </Title>
         </SafeAreaAndroid>
     )
-}
-
-Home.propTypes = {
-
 }
 
 export default Home

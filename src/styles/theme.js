@@ -1,11 +1,13 @@
 import { DefaultTheme } from 'react-native-paper';
 
 const theme = {
-    ...DefaultTheme,
+  ...DefaultTheme,
     colors: {
       ...DefaultTheme.colors,
-      primary: 'tomato',
-      accent: 'yellow',
+      primary: '#00DFC0',
+      secondary: '#202020',
+      error: '#ff5b5b',
+      background: '#FFF'
     },
 };
 
