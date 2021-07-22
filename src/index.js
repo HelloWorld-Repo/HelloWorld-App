@@ -4,11 +4,15 @@ import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 
-import Home from './screens/Home';
+import HomeScreen from './screens/HomeScreen';
+import LoginScreen from './screens/LoginScreen';
+import RegisterScreen from './screens/RegisterScreen';
+
+import { Text } from 'react-native';
 
 const Stack = createStackNavigator();
 
-const HomeScreen = () => {
+const App = () => {
   return ( 
     <NavigationContainer>
       <Stack.Navigator
@@ -17,11 +21,19 @@ const HomeScreen = () => {
       >
         <Stack.Screen 
           name="Home"
-          component={Home}
+          component={HomeScreen}
+        />
+        <Stack.Screen 
+          name="Register"
+          component={RegisterScreen}
+        />
+        <Stack.Screen 
+          name="Login"
+          component={LoginScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>
   )
 }
 
-export default HomeScreen;
+export default App;
