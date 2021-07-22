@@ -1,8 +1,7 @@
 import React from 'react'
 import { View } from 'react-native'
 import { Title, useTheme } from 'react-native-paper'
-import Button from '../../components/Button'
-import SafeAreaAndroid from '../../components/SafeAreaAndroid'
+import {Button, SafeAreaAndroid} from '../../components'
 import styles from './index.style'
 
 const Home = () => {

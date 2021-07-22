@@ -6,7 +6,7 @@ import { Provider as PaperProvider } from 'react-native-paper';
 
 import theme from './src/styles/theme';
 
-import App from './src/App';
+import App from './src/HomeScreen';
 
 const Main = () => {
   
