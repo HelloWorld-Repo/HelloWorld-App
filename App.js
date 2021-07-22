@@ -1,33 +1,28 @@
+import 'react-native-gesture-handler';
+
 import * as React from 'react';
-import { Text, View } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-function HomeScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Home!</Text>
-    </View>
-  );
-}
+import Home from './src/screens/Home';
+import SafeAreaAndroid from './src/components/SafeAreaAndroid';
 
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
-    </View>
-  );
-}
+const Stack = createStackNavigator();
 
-const Tab = createBottomTabNavigator();
-
-export default function App() {
-  return (
+const HomeScreen = () => {
+  return ( 
     <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Settings" component={SettingsScreen} />
-      </Tab.Navigator>
+      <Stack.Navigator
+        initialRouteName="Home"
+        headerMode="none"
+      >
+        <Stack.Screen 
+          name="Home"
+          component={Home}
+        />
+      </Stack.Navigator>
     </NavigationContainer>
-  );
+  )
 }
+
+export default HomeScreen;
