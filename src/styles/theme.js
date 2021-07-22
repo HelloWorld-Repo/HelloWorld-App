@@ -8,8 +8,8 @@ const theme = {
     primary: '#00DFC0',
     secondary: '#202020',
     error: '#ff5b5b',
-    background: '#FFF',
-    textPrimary: '#FFF',
+    background: '#ffffff',
+    textPrimary: '#ffffff',
     buttonShadow: '#00c6a9'
   },
   fonts: {
@@ -24,7 +24,8 @@ const theme = {
     size: {
       title: 40,
       subtitle: 30,
-      text: 20
+      text: 20,
+      headerTitle: 25
     }
   },
 };

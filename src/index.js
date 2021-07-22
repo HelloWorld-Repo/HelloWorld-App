@@ -1,39 +1,58 @@
-import 'react-native-gesture-handler';
+import "react-native-gesture-handler";
 
-import * as React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
+import * as React from "react";
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from "@react-navigation/native";
+import { useTheme } from "react-native-paper";
 
-import HomeScreen from './screens/HomeScreen';
-import LoginScreen from './screens/LoginScreen';
-import RegisterScreen from './screens/RegisterScreen';
+import HomeScreen from "./screens/HomeScreen";
+import LoginScreen from "./screens/LoginScreen";
+import RegisterScreen from "./screens/RegisterScreen";
+import { TitleText } from "./components"
 
-import { Text } from 'react-native';
 
 const Stack = createStackNavigator();
 
 const App = () => {
-  return ( 
+  const theme = useTheme();
+
+  const screenOptions = {
+    headerShown: false,
+    headerStyle: {
+      backgroundColor: theme.colors.accent,
+    },
+    headerTintColor: theme.colors.textPrimary,
+  };
+
+  return (
     <NavigationContainer>
       <Stack.Navigator
         initialRouteName="Home"
-        headerMode="none"
+        screenOptions={screenOptions}
+        headerMode="screen"
       >
-        <Stack.Screen 
-          name="Home"
-          component={HomeScreen}
-        />
-        <Stack.Screen 
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen
           name="Register"
           component={RegisterScreen}
+          options={{
+            headerShown: true,
+            headerTitle: TitleText,
+            headerTitleAlign: 'center'
+          }}
         />
-        <Stack.Screen 
+        <Stack.Screen
           name="Login"
           component={LoginScreen}
+          options={{
+            headerShown: true,
+            headerTitle: TitleText,
+            headerTitleAlign: 'center'
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>
-  )
-}
+  );
+};
 
 export default App;
