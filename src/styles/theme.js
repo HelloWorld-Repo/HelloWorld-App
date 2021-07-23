@@ -25,7 +25,8 @@ const theme = {
       title: 40,
       subtitle: 30,
       text: 20,
-      headerTitle: 25
+      headerTitle: 25,
+      bigLogo: 70
     }
   },
 };

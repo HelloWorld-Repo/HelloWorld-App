@@ -2,12 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Text } from "react-native";
 
-import { SafeAreaAndroid } from "../../components";
+import { SafeAreaAndroid, TitleText } from "../../components";
 
 const LoginScreen = (props) => {
   return (
     <SafeAreaAndroid>
-      <Text>LoginScreen</Text>
+      <TitleText type="big"></TitleText>
     </SafeAreaAndroid>
   );
 };
