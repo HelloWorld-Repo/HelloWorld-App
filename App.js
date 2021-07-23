@@ -3,7 +3,6 @@ import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 import { Provider as PaperProvider } from 'react-native-paper';
 
-
 import theme from './src/styles/theme';
 
 import App from './src';

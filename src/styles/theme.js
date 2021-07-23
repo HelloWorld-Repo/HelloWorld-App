@@ -7,10 +7,12 @@ const theme = {
     ...DefaultTheme.colors,
     primary: '#00DFC0',
     secondary: '#202020',
-    error: '#ff5b5b',
-    background: '#ffffff',
-    textPrimary: '#ffffff',
-    buttonShadow: '#00c6a9'
+    error: '#FF5B5B',
+    background: '#FFFFFF',
+    buttonShadow: '#00C6A9',
+    disabled: '#B9B9B9',
+    disabledShadow: '#A3A3A3',
+    textPrimary: '#FFFFFF',
   },
   fonts: {
     titleOutline: 'londrinaOutline-regular',

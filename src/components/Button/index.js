@@ -7,7 +7,14 @@ import AwesomeButton from "react-native-really-awesome-button";
 
 import styles from "./index.style";
 
-const Button = ({ text, width, containerStyles, onClick }) => {
+const Button = ({
+  text,
+  width,
+  containerStyles,
+  onClick,
+  full = false,
+  disabled = false
+}) => {
   const [audio, setAudio] = React.useState();
   const theme = useTheme();
 
@@ -19,13 +26,13 @@ const Button = ({ text, width, containerStyles, onClick }) => {
       : undefined;
   }, [audio]);
 
-  const playSound = async() => {
+  const playSound = async () => {
     const { sound } = await Audio.Sound.createAsync(
       require("../../../assets/sounds/click-button.wav")
     );
     setAudio(sound);
     sound.playAsync();
-  }
+  };
 
   const handlePress = async () => {
     await playSound();
@@ -39,30 +46,28 @@ const Button = ({ text, width, containerStyles, onClick }) => {
     <AwesomeButton
       width={width}
       textColor={theme.colors.textPrimary}
-      backgroundColor={theme.colors.primary}
-      backgroundDarker={theme.colors.buttonShadow}
+      backgroundColor={disabled ? theme.colors.disabled : theme.colors.primary}
+      backgroundDarker={disabled ? theme.colors.disabledShadow :theme.colors.buttonShadow}
       borderRadius={15}
       textSize={theme.fonts.size.text}
       textFontFamily={theme.fonts.sampleText}
       style={containerStyles}
       onPress={handlePress}
+      stretch={full}
+      disabled={disabled}
     >
       <Text style={styles.labelButton}>{text}</Text>
     </AwesomeButton>
   );
 };
 
-Button.defaultProps = {
-  width: null,
-  containerStyles: null,
-  onClick: () => {}
-}
-
 Button.propTypes = {
-  text: PropTypes.string.isRequired, 
-  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]), 
-  containerStyles: ViewPropTypes.style, 
-  onClick: PropTypes.func
-}
+  text: PropTypes.string.isRequired,
+  width: PropTypes.number,
+  containerStyles: ViewPropTypes.style,
+  onClick: PropTypes.func,
+  full: PropTypes.bool,
+  disabled: PropTypes.bool
+};
 
 export default Button;

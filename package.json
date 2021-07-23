@@ -9,6 +9,7 @@
     "expo-app-loading": "^1.1.2",
     "expo-av": "~9.2.3",
     "expo-font": "~9.2.1",
+    "formik": "^2.2.9",
     "prop-types": "^15.7.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
@@ -21,7 +22,9 @@
     "react-native-screens": "~3.4.0",
     "react-native-vector-icons": "^8.1.0",
     "react-native-web": "~0.13.12",
-    "react-paper": "0.0.2"
+    "react-paper": "0.0.2",
+    "underscore": "^1.13.1",
+    "yup": "^0.32.9"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0"

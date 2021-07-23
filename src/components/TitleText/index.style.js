@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
         color: theme.colors.textPrimary,
         fontFamily: theme.fonts.titleSolidBlack,
         lineHeight: theme.fonts.size.headerTitle,
-        fontSize: theme.fonts.size.headerTitle
+        fontSize: theme.fonts.size.headerTitle,
     },
 
     bigTitle: {
@@ -25,12 +25,12 @@ const styles = StyleSheet.create({
         fontSize: theme.fonts.size.headerTitle
     },
 
-    titleToLeft: ({
-        marginRight: theme.spacing(3)
+    titleToLeft: spacing => ({
+        marginRight: theme.spacing(spacing || 3)
     }),
 
-    titleToRight: ({
-        marginLeft: theme.spacing(3),
+    titleToRight: spacing => ({
+        marginLeft: theme.spacing(spacing || 3),
         marginTop: theme.spacing(-1)
     }),
 
