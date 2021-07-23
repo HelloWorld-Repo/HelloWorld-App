@@ -19,7 +19,6 @@ const styles = StyleSheet.create({
         paddingTop: theme.spacing(20),
         paddingBottom: theme.spacing(20),
         justifyContent: "space-between",
-        backgroundColor: theme.colors.background
     }),
     introQuestion: ({
         fontFamily: theme.fonts.sampleText,

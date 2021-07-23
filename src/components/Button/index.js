@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
-import { Text } from "react-native";
+import { Text, ViewPropTypes } from "react-native";
 import { useTheme } from "react-native-paper";
 import { Audio } from "expo-av";
+import PropTypes from "prop-types";
 import AwesomeButton from "react-native-really-awesome-button";
 
 import styles from "./index.style";
 
-const Button = ({ text, width, containerStyles, outlined, onClick }) => {
+const Button = ({ text, width, containerStyles, onClick }) => {
   const [audio, setAudio] = React.useState();
   const theme = useTheme();
 
@@ -50,5 +51,18 @@ const Button = ({ text, width, containerStyles, outlined, onClick }) => {
     </AwesomeButton>
   );
 };
+
+Button.defaultProps = {
+  width: null,
+  containerStyles: null,
+  onClick: () => {}
+}
+
+Button.propTypes = {
+  text: PropTypes.string.isRequired, 
+  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]), 
+  containerStyles: ViewPropTypes.style, 
+  onClick: PropTypes.func
+}
 
 export default Button;
