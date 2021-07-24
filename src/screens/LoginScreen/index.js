@@ -21,13 +21,16 @@ const LoginScreen = ({ navigation }) => {
   const onSubmitLogin = async (credentials) => {
     await AuthService.login(credentials)
       .then((response) => {
-        navigation.navigate("Tabs");
+        navigation.reset({
+          index: 0,
+          routes: [{name: 'Tabs'}],
+        });
         // console.log("Success", response);
         // TODO: Guardar token em um estado
         // TODO: Redirecionar para as tabs
       })
       .catch((error) => {
-        // console.log("Error", error);
+        console.error(error);
       });
   };
 
