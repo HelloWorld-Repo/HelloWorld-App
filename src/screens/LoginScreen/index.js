@@ -1,14 +1,15 @@
 import React from "react";
 import { View } from "react-native";
 import { Formik } from "formik";
-import { Paragraph, withTheme } from "react-native-paper";
+import { Paragraph } from "react-native-paper";
 import * as Yup from "yup";
 
-import { SafeAreaAndroid, TitleText } from "../../components";
+import { SafeAreaAndroid } from "../../components";
 import styles from "./index.style";
 import LoginForm from "./components/LoginForm";
+import AuthService from "../../services/AuthService";
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
   const LoginSchema = Yup.object().shape({
     password: Yup.string()
       .min(8, "Escolha uma senha de, no mínimo 8 caracteres")
@@ -16,6 +17,19 @@ const LoginScreen = () => {
       .required("Preencha a senha"),
     email: Yup.string().email("E-mail inválido").required("Preencha o e-mail"),
   });
+
+  const onSubmitLogin = async (credentials) => {
+    await AuthService.login(credentials)
+      .then((response) => {
+        navigation.navigate("Tabs");
+        // console.log("Success", response);
+        // TODO: Guardar token em um estado
+        // TODO: Redirecionar para as tabs
+      })
+      .catch((error) => {
+        // console.log("Error", error);
+      });
+  };
 
   return (
     <SafeAreaAndroid styleSafeArea={styles.safeArea}>
@@ -27,7 +41,7 @@ const LoginScreen = () => {
           </Paragraph>
           <Formik
             initialValues={{ email: "", password: "" }}
-            onSubmit={(values) => console.log(values)}
+            onSubmit={(values) => onSubmitLogin(values)}
             validationSchema={LoginSchema}
           >
             {({

@@ -8,8 +8,8 @@ import { useTheme } from "react-native-paper";
 import HomeScreen from "./screens/HomeScreen";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
-import { TitleText } from "./components"
-
+import { TitleText } from "./components";
+import Tabs from "./screens/Tabs";
 
 const Stack = createStackNavigator();
 
@@ -38,7 +38,7 @@ const App = () => {
           options={{
             headerShown: true,
             headerTitle: TitleText,
-            headerTitleAlign: 'center'
+            headerTitleAlign: "center",
           }}
         />
         <Stack.Screen
@@ -47,7 +47,14 @@ const App = () => {
           options={{
             headerShown: true,
             headerTitle: TitleText,
-            headerTitleAlign: 'center'
+            headerTitleAlign: "center",
+          }}
+        />
+        <Stack.Screen
+          name="Tabs"
+          component={Tabs}
+          options={{
+            headerShown: false,
           }}
         />
       </Stack.Navigator>
