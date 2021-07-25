@@ -8,25 +8,25 @@ const HomeScreen = ({ navigation }) => {
   const theme = useTheme();
 
   return (
-    <SafeAreaAndroid styleSafeArea={styles.container}>
-      <View style={styles.firstContainer}>
-        <Title style={styles.title}>Seja bem-vindo(a) ao</Title>
-        <Title style={styles.titleDecorated}>{`<HelloWorld/>`}</Title>
-      </View>
-      <View style={styles.secondContainer}>
-        <Title style={styles.introQuestion}>Você é novo por aqui?</Title>
-        <Button
-          width={260}
-          containerStyles={{ marginBottom: theme.spacing(2) }}
-          text="Sim"
-          onClick={() => navigation.push("Register")}
-        />
-        <Button
-          width={260}
-          text="Não, já sou de casa"
-          onClick={() => navigation.push("Login")}
-        />
-      </View>
+    <SafeAreaAndroid styleSafeArea={styles.safeArea}>
+        <View style={styles.container}>
+          <View style={styles.internContainer}>
+            <Title style={styles.title}>Seja bem-vindo(a) ao</Title>
+            <Title style={styles.titleDecorated}>{`<HelloWorld/>`}</Title>
+          </View>
+            <Title style={styles.introQuestion}>Você é novo por aqui?</Title>
+            <Button
+              width={260}
+              containerStyles={{ marginBottom: theme.spacing(2) }}
+              text="Sim"
+              onClick={() => navigation.push("Register")}
+            />
+            <Button
+              width={260}
+              text="Não, já sou de casa"
+              onClick={() => navigation.push("Login")}
+            />
+        </View>
     </SafeAreaAndroid>
   );
 };
