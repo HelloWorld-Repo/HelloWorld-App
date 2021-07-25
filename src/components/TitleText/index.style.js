@@ -5,8 +5,8 @@ const styles = StyleSheet.create({
     headerTitle: {
         color: theme.colors.textPrimary,
         fontFamily: theme.fonts.titleSolidBlack,
-        lineHeight: theme.fonts.size.headerTitle,
-        fontSize: theme.fonts.size.headerTitle,
+        lineHeight: theme.fonts.size.text,
+        fontSize: theme.fonts.size.text,
     },
 
     bigTitle: {
@@ -21,8 +21,8 @@ const styles = StyleSheet.create({
     invertedTitle: {
         color: theme.colors.accent,
         fontFamily: theme.fonts.titleSolidBlack,
-        lineHeight: theme.fonts.size.headerTitle,
-        fontSize: theme.fonts.size.headerTitle
+        lineHeight: theme.fonts.size.text,
+        fontSize: theme.fonts.size.text
     },
 
     titleToLeft: spacing => ({

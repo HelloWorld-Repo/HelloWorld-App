@@ -11,11 +11,11 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: theme.fonts.sampleText,
-    fontSize: theme.fonts.size.headerTitle,
+    fontSize: theme.fonts.size.text,
     textAlign: "center",
     paddingBottom: theme.spacing(5),
     color: theme.colors.secondary,
-    lineHeight: theme.fonts.size.headerTitle,
+    lineHeight: theme.fonts.size.text,
   },
   safeArea: {
     backgroundColor: theme.colors.background,

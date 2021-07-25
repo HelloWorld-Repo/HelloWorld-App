@@ -24,11 +24,10 @@ const theme = {
     titleSolidThin: 'londrinaSolid-Thin',
     sampleText: 'textMeOne',
     size: {
-      title: 40,
-      subtitle: 30,
+      title: 35,
+      subtitle: 25,
       text: 20,
-      headerTitle: 25,
-      bigLogo: 70,
+      bigLogo: 45,
       small: 15
     }
   },
