@@ -7,7 +7,7 @@ const theme = {
     ...DefaultTheme.colors,
     primary: '#00DFC0',
     secondary: '#202020',
-    error: '#FF5B5B',
+    error: '#ff7575',
     background: '#FFFFFF',
     buttonShadow: '#00C6A9',
     disabled: '#B9B9B9',
@@ -28,7 +28,8 @@ const theme = {
       subtitle: 30,
       text: 20,
       headerTitle: 25,
-      bigLogo: 70
+      bigLogo: 70,
+      small: 15
     }
   },
 };
