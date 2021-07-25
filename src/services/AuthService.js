@@ -1,16 +1,16 @@
-import api from "./api";
+import api from './api';
 
 const login = async ({ email, password }) => {
-    console.log(email, password);
-    await api.post("login", {
-        email,
-        password,
+  return await api
+    .post('login', {
+      email,
+      password,
     })
     .then((response) => {
-        return response?.data;
+      return response?.data?.data;
     })
     .catch((error) => {
-        return error?.response?.data;
+      return error?.response?.data;
     });
 };
 

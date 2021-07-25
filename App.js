@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 import { Provider as PaperProvider } from 'react-native-paper';
 
 import theme from './src/styles/theme';
-
 import App from './src';
+import { ApplicationProvider } from './src/providers/ApplicationProvider';
 
 const Main = () => {
-  
   let [dataLoaded] = useFonts({
     'londrinaOutline-regular': require('./assets/fonts/LondrinaOutline-Regular.ttf'),
     'londrinaShadow-Regular': require('./assets/fonts/LondrinaShadow-Regular.ttf'),
@@ -17,18 +16,20 @@ const Main = () => {
     'londrinaSolid-Light': require('./assets/fonts/LondrinaSolid-Light.ttf'),
     'londrinaSolid-Regular': require('./assets/fonts/LondrinaSolid-Regular.ttf'),
     'londrinaSolid-Thin': require('./assets/fonts/LondrinaSolid-Thin.ttf'),
-    'textMeOne': require('./assets/fonts/TextMeOne-Regular.ttf'),
+    textMeOne: require('./assets/fonts/TextMeOne-Regular.ttf'),
   });
-  
-  if(!dataLoaded){
-    return <AppLoading/>;
+
+  if (!dataLoaded) {
+    return <AppLoading />;
   }
 
   return (
-    <PaperProvider theme={theme}>
-      <App />
-    </PaperProvider>
+    <ApplicationProvider>
+      <PaperProvider theme={theme}>
+        <App />
+      </PaperProvider>
+    </ApplicationProvider>
   );
-}
+};
 
 export default Main;
