@@ -9,8 +9,9 @@ const RecentsRoute = () => <Text>Recents</Text>;
 
 const MyComponent = () => {
   const [index, setIndex] = React.useState(0);
+  
   const [routes] = React.useState([
-    { key: 'music', title: 'Music', icon: 'queue-music' },
+    { key: 'music', title: 'Music', icon: 'home' },
     { key: 'albums', title: 'Albums', icon: 'album' },
     { key: 'recents', title: 'Recents', icon: 'history' },
   ]);
@@ -26,6 +27,7 @@ const MyComponent = () => {
       navigationState={{ index, routes }}
       onIndexChange={setIndex}
       renderScene={renderScene}
+      shifting={true}
     />
   );
 };
