@@ -13,7 +13,6 @@ const styles = StyleSheet.create({
   fieldValue: {
     color: theme.colors.disabledShadow,
     fontFamily: theme.fonts.sampleText,
-    fontWeight: "700"
   }
 });
 

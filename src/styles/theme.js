@@ -23,6 +23,9 @@ const theme = {
     titleSolidRegular: 'londrinaSolid-Regular',
     titleSolidThin: 'londrinaSolid-Thin',
     sampleText: 'textMeOne',
+    regular: {
+      fontFamily: 'textMeOne'
+    },
     size: {
       title: 35,
       subtitle: 25,

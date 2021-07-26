@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 import styles from './index.style';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import { Paragraph, Button } from 'react-native-paper';
 import theme from '../../styles/theme';
 
