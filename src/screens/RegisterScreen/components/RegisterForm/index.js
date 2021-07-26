@@ -5,7 +5,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import _ from 'underscore';
 import moment from 'moment';
 
-import { Button, DateField } from '../../../../components';
+import { Button, DateField, SwitchGroup } from '../../../../components';
 import styles from './index.style';
 
 const formatCustomDate = (date) => {
@@ -30,10 +30,8 @@ const RegisterForm = ({
   const theme = useTheme();
 
   const onChangeHandler = (date) => {
-    console.log('date 1', values.birthday);
     setShowDatePicker(false);
     setFieldValue('birthday', moment(date).toDate());
-    console.log('date 2', values.birthday);
   };
 
   return (
@@ -45,7 +43,6 @@ const RegisterForm = ({
         value={values.name}
         type="flat"
         style={styles.input}
-        mode="outlined"
       />
       <HelperText type="error" visible={!!errors?.name && !!touched?.name}>
         {errors.name}
@@ -84,17 +81,19 @@ const RegisterForm = ({
         {errors.birthday}
       </HelperText>
 
-      <Switch
-        value={values.isFirstContact}
-        onValueChange={handleChange('isFirstContact')}
+      <SwitchGroup
+        value={values.isStudent}
+        onValueChange={(value) => setFieldValue('isStudent', value)}
         color={theme.colors.accent}
+        label="Eu já estudo programação em um curso ou faculdade"
+      />
+      <SwitchGroup
+        value={values.isFirstContact}
+        onValueChange={(value) => setFieldValue('isFirstContact', value)}
+        color={theme.colors.accent}
+        label="É o meu primeiro contato com programação"
       />
 
-      <Switch
-        value={values.isStudant}
-        onValueChange={handleChange('isStudant')}
-        color={theme.colors.accent}
-      />
 
       <TextInput
         label="Senha"

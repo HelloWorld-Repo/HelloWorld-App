@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import { Formik, yupToFormErrors } from 'formik';
+import { Formik } from 'formik';
 import { ActivityIndicator, Paragraph, useTheme } from 'react-native-paper';
 import * as Yup from 'yup';
 
