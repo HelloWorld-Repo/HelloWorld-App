@@ -54,8 +54,6 @@ const RegisterScreen = ({ navigation }) => {
         index: 0,
         routes: [{ name: 'Tabs' }],
       });
-
-      // TODO: Guardar token em um estado
     } catch (error) {
       setError(error?.message || 'Ops, aconteceu um erro, tente novamente');
       setLoading(false);
