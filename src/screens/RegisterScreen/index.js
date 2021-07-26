@@ -35,11 +35,7 @@ const RegisterSchema = Yup.object().shape({
     .required('Você esqueceu de preencher a senha'),
   confirmPassword: Yup.string()
     .required('Você esqueceu de preencher a confirmação da senha')
-    .test(
-      'passwords-match',
-      'As senhas devem ser iguais',
-      (value) => this.parent.password === value
-    ),
+    .oneOf([Yup.ref('password'), null], 'A senhas etão diferentes')
 });
 
 const RegisterScreen = ({ navigation }) => {
@@ -89,6 +85,7 @@ const RegisterScreen = ({ navigation }) => {
               values,
               errors,
               touched,
+              setFieldValue
             }) => (
               <RegisterForm
                 handleChange={handleChange}
@@ -97,6 +94,7 @@ const RegisterScreen = ({ navigation }) => {
                 values={values}
                 errors={errors}
                 touched={touched}
+                setFieldValue={setFieldValue}
               />
             )}
           </Formik>

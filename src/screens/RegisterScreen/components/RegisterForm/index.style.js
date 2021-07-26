@@ -6,7 +6,9 @@ const styles = StyleSheet.create({
     marginTop: theme.spacing(10),
   },
   input: {
-    backgroundColor: theme.colors.background
+    backgroundColor: theme.colors.background,
+    fontFamily: theme.fonts.sampleText,
+    fontSize: theme.fonts.size.small
   }
 });
 
