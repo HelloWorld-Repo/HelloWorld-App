@@ -1,15 +1,16 @@
-import "react-native-gesture-handler";
+import 'react-native-gesture-handler';
 
-import * as React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
-import { NavigationContainer } from "@react-navigation/native";
-import { useTheme } from "react-native-paper";
+import * as React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { useTheme } from 'react-native-paper';
 
-import HomeScreen from "./screens/HomeScreen";
-import LoginScreen from "./screens/LoginScreen";
-import RegisterScreen from "./screens/RegisterScreen";
-import { TitleText } from "./components";
-import Tabs from "./screens/Tabs";
+import HomeScreen from './screens/HomeScreen';
+import LoginScreen from './screens/LoginScreen';
+import RegisterScreen from './screens/RegisterScreen';
+import OnboardingScreen from './screens/OnboardingScreen';
+import { TitleText } from './components';
+import Tabs from './screens/tabs';
 
 const Stack = createStackNavigator();
 
@@ -38,7 +39,7 @@ const App = () => {
           options={{
             headerShown: true,
             headerTitle: TitleText,
-            headerTitleAlign: "center",
+            headerTitleAlign: 'center',
           }}
         />
         <Stack.Screen
@@ -47,12 +48,19 @@ const App = () => {
           options={{
             headerShown: true,
             headerTitle: TitleText,
-            headerTitleAlign: "center",
+            headerTitleAlign: 'center',
           }}
         />
         <Stack.Screen
           name="Tabs"
           component={Tabs}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Onboarding"
+          component={OnboardingScreen}
           options={{
             headerShown: false,
           }}

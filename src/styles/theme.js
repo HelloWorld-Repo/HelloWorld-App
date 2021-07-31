@@ -24,15 +24,15 @@ const theme = {
     titleSolidThin: 'londrinaSolid-Thin',
     sampleText: 'textMeOne',
     regular: {
-      fontFamily: 'textMeOne'
+      fontFamily: 'textMeOne',
     },
     size: {
       title: 35,
       subtitle: 25,
       text: 20,
       bigLogo: 45,
-      small: 15
-    }
+      small: 15,
+    },
   },
 };
 

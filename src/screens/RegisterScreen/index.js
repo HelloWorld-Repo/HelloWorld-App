@@ -39,6 +39,8 @@ const RegisterSchema = Yup.object().shape({
 });
 
 const RegisterScreen = ({ navigation }) => {
+  const { context, setContext } = useApplicationProvider();
+  
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -47,12 +49,20 @@ const RegisterScreen = ({ navigation }) => {
   const onSubmitRegister = async (userData) => {
     try {
       await setLoading(true);
-      const response = await UserService.registerUser(userData);
+      const user = await UserService.registerUser(userData);
+
+      await setContext({
+        ...context,
+        user,
+      });
+      
+      //TODO: Fazer Login do usuário cadastrado
+      //TODO: Enviar e-mail de confirmação para o usuário
 
       setLoading(false);
       navigation.reset({
         index: 0,
-        routes: [{ name: 'Tabs' }],
+        routes: [{ name: 'Onboarding' }],
       });
     } catch (error) {
       setError(error?.message || 'Ops, aconteceu um erro, tente novamente');
