@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useRef } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import PropTypes from 'prop-types';
 
@@ -13,7 +13,15 @@ const ApplicationProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    loadStorageData();
+    let isRendered = true;
+
+    if(isRendered){
+      loadStorageData();
+    }
+
+    return () => {
+      isRendered = false;
+    };
   }, []);
 
   const loadStorageData = async () => {
@@ -30,7 +38,7 @@ const ApplicationProvider = ({ children }) => {
     }
   };
 
-  async function signIn(email, password) {
+  const signIn = async(email, password) => {
     const response = await AuthService.login(email, password);
 
     setUser({ ...response.user, token: response.token });
@@ -44,7 +52,7 @@ const ApplicationProvider = ({ children }) => {
     await AsyncStorage.setItem('@HelloWorld:token', response.token);
   }
 
-  async function signOut() {
+  const signOut = async() => {
     await AsyncStorage.clear();
     setUser(null);
   }
