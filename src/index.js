@@ -11,11 +11,15 @@ import RegisterScreen from './screens/RegisterScreen';
 import OnboardingScreen from './screens/OnboardingScreen';
 import { TitleText } from './components';
 import TabsScreen from './screens/TabsScreen';
+import { useApplicationProvider } from './providers/ApplicationProvider';
 
 const Stack = createStackNavigator();
 
 const App = () => {
   const theme = useTheme();
+  const {context} = useApplicationProvider();
+
+  console.log(context)
 
   const screenOptions = {
     headerShown: false,
@@ -28,7 +32,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Home"
+        initialRouteName={() => !!context.user && !!context.token ? 'Tabs' : 'Home'}
         screenOptions={screenOptions}
         headerMode="screen"
       >
