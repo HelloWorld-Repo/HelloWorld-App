@@ -13,7 +13,6 @@ const styles = StyleSheet.create({
     }),
     titleDecorated: ({
         color: theme.colors.textPrimary,
-        marginBottom: theme.spacing(8),
         fontFamily: theme.fonts.titleSolidRegular,
         fontSize: theme.fonts.size.bigLogo,
         lineHeight: theme.fonts.size.bigLogo + theme.spacing(2),
@@ -33,15 +32,15 @@ const styles = StyleSheet.create({
     }),
     internContainer: ({
         alignItems: "center",
-        justifyContent: "flex-end",
+        justifyContent: "center",
         backgroundColor: theme.colors.accent,
         flex: 1,
         width: '100%',
         borderBottomLeftRadius: 70,
-        borderBottomRightRadius: 70
+        borderBottomRightRadius: 70,
+        paddingTop: theme.spacing(15)
     }),
     safeArea: {
-        height: screenHeight,
         backgroundColor: theme.colors.background
     }
 });

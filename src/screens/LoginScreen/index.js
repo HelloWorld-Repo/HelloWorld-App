@@ -55,39 +55,36 @@ const LoginScreen = ({ navigation }) => {
       {loading && (
         <ActivityIndicator animating={true} color={theme.colors.primary} />
       )}
-      <View style={styles.container}>
-        {/* <TitleText type="big" spacing={10}/> */}
-        <View style={{ width: '100%' }}>
-          <Paragraph style={styles.text}>
-            Olá novamente! digite seu login para continuar
-          </Paragraph>
-          <Formik
-            initialValues={{ email: '', password: '' }}
-            onSubmit={(values) => onSubmitLogin(values)}
-            validationSchema={LoginSchema}
-          >
-            {({
-              handleChange,
-              handleBlur,
-              handleSubmit,
-              values,
-              errors,
-              touched,
-            }) => (
-              <LoginForm
-                handleChange={handleChange}
-                handleBlur={handleBlur}
-                handleSubmit={handleSubmit}
-                values={values}
-                errors={errors}
-                touched={touched}
-              />
-            )}
-          </Formik>
-        </View>
+      <View style={{ width: '100%' }}>
+        <Paragraph style={styles.text}>
+          Olá novamente! digite seu login para continuar
+        </Paragraph>
+        <Formik
+          initialValues={{ email: '', password: '' }}
+          onSubmit={(values) => onSubmitLogin(values)}
+          validationSchema={LoginSchema}
+        >
+          {({
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            values,
+            errors,
+            touched,
+          }) => (
+            <LoginForm
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              handleSubmit={handleSubmit}
+              values={values}
+              errors={errors}
+              touched={touched}
+            />
+          )}
+        </Formik>
       </View>
-      <Toast 
-        message={error} 
+      <Toast
+        message={error}
         visible={!!error}
         onDismiss={() => setError(null)}
       />
