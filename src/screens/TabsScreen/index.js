@@ -1,5 +1,11 @@
 import * as React from 'react';
-import { BottomNavigation, Text, useTheme, Appbar } from 'react-native-paper';
+import {
+  BottomNavigation,
+  Text,
+  useTheme,
+  Appbar,
+  Button,
+} from 'react-native-paper';
 import { Image, View } from 'react-native';
 
 import styles from './index.style';
@@ -10,9 +16,18 @@ const houseIcon = require('../../../assets/icons/house.png');
 const graphIcon = require('../../../assets/icons/graph.png');
 const personIcon = require('../../../assets/icons/person.png');
 const questionsIcon = require('../../../assets/icons/questions.png');
-const starIcon = require('../../../assets/icons/star.png')
+const starIcon = require('../../../assets/icons/star.png');
 
-const MusicRoute = () => <Text>Music</Text>;
+const MusicRoute = () => {
+  const { user, signOut } = useApplicationProvider();
+
+  return (
+    <>
+      <Text>{user?.token}</Text>
+      <Button onPress={signOut}>Sair</Button>
+    </>
+  );
+};
 
 const AlbumsRoute = () => <Text>Albums</Text>;
 
@@ -20,7 +35,7 @@ const RecentsRoute = () => <Text>Recents</Text>;
 
 const TabsScreen = () => {
   const [index, setIndex] = React.useState(0);
-  const { context } = useApplicationProvider();
+  const { user } = useApplicationProvider();
 
   const theme = useTheme();
 
@@ -62,9 +77,9 @@ const TabsScreen = () => {
     <>
       <Appbar.Header style={styles.header}>
         <View style={styles.headerContent}>
-          <TitleText color={theme.colors.accent} style={styles.logo}/>
+          <TitleText color={theme.colors.accent} style={styles.logo} />
           <Image source={starIcon}></Image>
-          <Text>{context.user.level || 0}</Text>
+          <Text>{user?.level || 0}</Text>
         </View>
       </Appbar.Header>
       <BottomNavigation

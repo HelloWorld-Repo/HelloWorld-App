@@ -1,11 +1,11 @@
-import { StyleSheet } from "react-native";
-import theme from "../../styles/theme";
+import { StyleSheet } from 'react-native';
+import theme from '../../styles/theme';
 
 const styles = StyleSheet.create({
   text: {
     fontFamily: theme.fonts.sampleText,
     fontSize: theme.fonts.size.text,
-    textAlign: "center",
+    textAlign: 'center',
     paddingBottom: theme.spacing(5),
     color: theme.colors.secondary,
     lineHeight: theme.fonts.size.text,
@@ -14,6 +14,9 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.background,
     paddingHorizontal: theme.spacing(3),
     paddingVertical: theme.spacing(5),
+  },
+  loading: {
+    marginVertical: theme.spacing(3),
   },
 });
 
