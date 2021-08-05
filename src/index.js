@@ -10,7 +10,7 @@ import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import OnboardingScreen from './screens/OnboardingScreen';
 import { TitleText } from './components';
-import Tabs from './screens/tabs';
+import TabsScreen from './screens/TabsScreen';
 
 const Stack = createStackNavigator();
 
@@ -53,7 +53,7 @@ const App = () => {
         />
         <Stack.Screen
           name="Tabs"
-          component={Tabs}
+          component={TabsScreen}
           options={{
             headerShown: false,
           }}

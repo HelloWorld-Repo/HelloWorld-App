@@ -8,6 +8,7 @@ import { SafeAreaAndroid, Toast } from '../../components';
 import styles from './index.style';
 import RegisterForm from './components/RegisterForm';
 import UserService from '../../services/UserService';
+import { useApplicationProvider } from '../../providers/ApplicationProvider';
 
 const initialValues = {
   name: '',
@@ -50,7 +51,6 @@ const RegisterScreen = ({ navigation }) => {
     try {
       await setLoading(true);
       const user = await UserService.registerUser(userData);
-
       await setContext({
         ...context,
         user,
