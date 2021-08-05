@@ -17,9 +17,7 @@ const Stack = createStackNavigator();
 
 const App = () => {
   const theme = useTheme();
-  const {context} = useApplicationProvider();
-
-  console.log(context)
+  const { context } = useApplicationProvider();
 
   const screenOptions = {
     headerShown: false,
@@ -32,7 +30,9 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName={() => !!context.user && !!context.token ? 'Tabs' : 'Home'}
+        initialRouteName={() =>
+          !!context.user && !!context.token ? 'Tabs' : 'Home'
+        }
         screenOptions={screenOptions}
         headerMode="screen"
       >

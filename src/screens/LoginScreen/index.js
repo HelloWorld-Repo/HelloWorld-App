@@ -30,16 +30,13 @@ const LoginScreen = ({ navigation }) => {
       await setLoading(true);
       const response = await AuthService.login(credentials);
 
-      console.log('response', response);
       const { user, token } = response;
-      console.log('Context', context);
 
       await setContext({
         ...context,
         user,
         token,
       });
-      console.log('Context', context);
       setLoading(false);
       navigation.reset({
         index: 0,
