@@ -4,13 +4,13 @@ import {
   Text,
   useTheme,
   Appbar,
-  Button,
 } from 'react-native-paper';
 import { Image, View } from 'react-native';
 
 import styles from './index.style';
-import { TitleText } from '../../components';
+import { TitleText, Button } from '../../components';
 import { useApplicationProvider } from '../../providers/ApplicationProvider';
+import HistoryScreen from '../HistoryScreen';
 
 const houseIcon = require('../../../assets/icons/house.png');
 const graphIcon = require('../../../assets/icons/graph.png');
@@ -18,20 +18,16 @@ const personIcon = require('../../../assets/icons/person.png');
 const questionsIcon = require('../../../assets/icons/questions.png');
 const starIcon = require('../../../assets/icons/star.png');
 
-const MusicRoute = () => {
-  const { user, signOut } = useApplicationProvider();
-
-  return (
-    <>
-      <Text>{user?.token}</Text>
-      <Button onPress={signOut}>Sair</Button>
-    </>
-  );
-};
-
 const AlbumsRoute = () => <Text>Albums</Text>;
 
-const RecentsRoute = () => <Text>Recents</Text>;
+const RecentsRoute = () => {
+  const { user, signOut } = useApplicationProvider();
+  return (
+  <>
+    <Text>{user?.token}</Text>
+    <Button onPress={signOut} text="Sair" full />
+  </>
+)};
 
 const TabsScreen = () => {
   const [index, setIndex] = React.useState(0);
@@ -67,7 +63,7 @@ const TabsScreen = () => {
   ]);
 
   const renderScene = BottomNavigation.SceneMap({
-    home: MusicRoute,
+    home: HistoryScreen,
     questions: AlbumsRoute,
     abstract: RecentsRoute,
     profile: RecentsRoute,

@@ -2,6 +2,7 @@
   "recommendations": [
     "msjsdiag.vscode-react-native",
     "dbaeumer.vscode-eslint",
-    "esbenp.prettier-vscode"
+    "esbenp.prettier-vscode",
+    "naumovs.color-highlight"
   ]
 }

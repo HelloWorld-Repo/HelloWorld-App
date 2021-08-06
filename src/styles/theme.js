@@ -13,6 +13,8 @@ const theme = {
     disabled: '#B9B9B9',
     disabledShadow: '#A3A3A3',
     textPrimary: '#FFFFFF',
+    textSecondary: '#5F5F5F',
+    backgroundTitles: '#F2F2F2', 
   },
   fonts: {
     titleOutline: 'londrinaOutline-regular',
