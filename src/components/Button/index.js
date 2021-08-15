@@ -11,7 +11,7 @@ const Button = ({
   text,
   width,
   containerStyles,
-  onClick,
+  onPress,
   full = false,
   disabled = false
 }) => {
@@ -37,8 +37,8 @@ const Button = ({
   const handlePress = async () => {
     await playSound();
 
-    if (!!onClick) {
-      onClick();
+    if (!!onPress) {
+      onPress();
     }
   };
 
@@ -65,7 +65,7 @@ Button.propTypes = {
   text: PropTypes.string.isRequired,
   width: PropTypes.number,
   containerStyles: ViewPropTypes.style,
-  onClick: PropTypes.func,
+  onPress: PropTypes.func,
   full: PropTypes.bool,
   disabled: PropTypes.bool
 };

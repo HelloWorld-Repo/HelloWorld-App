@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import {
   BottomNavigation,
   Text,
@@ -30,12 +30,12 @@ const RecentsRoute = () => {
 )};
 
 const TabsScreen = () => {
-  const [index, setIndex] = React.useState(0);
+  const [index, setIndex] = useState(0);
   const { user } = useApplicationProvider();
 
   const theme = useTheme();
 
-  const [routes] = React.useState([
+  const [routes] = useState([
     {
       key: 'home',
       icon: ({ tintColor }) => (
@@ -65,7 +65,7 @@ const TabsScreen = () => {
   const renderScene = BottomNavigation.SceneMap({
     home: HistoryScreen,
     questions: AlbumsRoute,
-    abstract: RecentsRoute,
+    abstract: AlbumsRoute,
     profile: RecentsRoute,
   });
 

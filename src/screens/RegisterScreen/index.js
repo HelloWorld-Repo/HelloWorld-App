@@ -40,7 +40,7 @@ const RegisterSchema = Yup.object().shape({
 });
 
 const RegisterScreen = ({ navigation }) => {
-  const { context, setContext } = useApplicationProvider();
+  const { signIn } = useApplicationProvider();
   
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -49,14 +49,10 @@ const RegisterScreen = ({ navigation }) => {
 
   const onSubmitRegister = async (userData) => {
     try {
-      await setLoading(true);
-      const user = await UserService.registerUser(userData);
-      await setContext({
-        ...context,
-        user,
-      });
-      
-      //TODO: Fazer Login do usuário cadastrado
+      setLoading(true);
+      await UserService.registerUser(userData);
+      await signIn(userData.email, userData.password);
+    
       //TODO: Enviar e-mail de confirmação para o usuário
 
       setLoading(false);
