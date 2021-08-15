@@ -23,7 +23,7 @@ const OnboardingItem = ({ item }) =>{
       <Button
         text="Vamos!"
         full
-        onClick={() =>
+        onPress={() =>
           navigation.reset({
             index: 0,
             routes: [{ name: 'Tabs' }],

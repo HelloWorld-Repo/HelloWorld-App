@@ -131,7 +131,7 @@ const RegisterForm = ({
         containerStyles={styles.containerButton}
         full
         text="Continuar"
-        onClick={handleSubmit}
+        onPress={handleSubmit}
         disabled={_.size(errors) > 0 || _.size(touched) == 0}
       />
     </>

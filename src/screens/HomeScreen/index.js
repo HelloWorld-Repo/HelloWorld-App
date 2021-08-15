@@ -20,12 +20,12 @@ const HomeScreen = ({ navigation }) => {
           width={260}
           containerStyles={{ marginBottom: theme.spacing(2) }}
           text="Sim"
-          onClick={() => navigation.push('Register')}
+          onPress={() => navigation.push('Register')}
         />
         <Button
           width={260}
           text="Não, já sou de casa"
-          onClick={() => navigation.push('Login')}
+          onPress={() => navigation.push('Login')}
         />
       </View>
     </SafeAreaAndroid>
