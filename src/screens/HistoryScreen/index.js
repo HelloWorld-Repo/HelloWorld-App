@@ -21,7 +21,7 @@ const HistoryScreen = () => {
 
   return (
     <>
-      {modules.map((module) => <ModuleItem module={module}/>)}
+      {modules.map((module) => <ModuleItem key={module.id} module={module}/>)}
     </>
   )
 }
