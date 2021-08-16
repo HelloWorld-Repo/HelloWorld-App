@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import StoryService from '../../services/StoryService';
 import ModuleItem from './components/ModuleItem';
 
-const HistoryScreen = () => {
+const StoryScreen = () => {
   const [modules, setModules] = useState([]);
 
   useEffect(() => {
@@ -26,4 +26,4 @@ const HistoryScreen = () => {
   )
 }
 
-export default HistoryScreen
+export default StoryScreen

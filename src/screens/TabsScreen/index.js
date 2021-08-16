@@ -10,7 +10,7 @@ import { Image, View } from 'react-native';
 import styles from './index.style';
 import { TitleText, Button } from '../../components';
 import { useApplicationProvider } from '../../providers/ApplicationProvider';
-import HistoryScreen from '../HistoryScreen';
+import StoryScreen from '../StoryScreen';
 
 const houseIcon = require('../../../assets/icons/house.png');
 const graphIcon = require('../../../assets/icons/graph.png');
@@ -63,7 +63,7 @@ const TabsScreen = () => {
   ]);
 
   const renderScene = BottomNavigation.SceneMap({
-    home: HistoryScreen,
+    home: StoryScreen,
     questions: AlbumsRoute,
     abstract: AlbumsRoute,
     profile: RecentsRoute,
