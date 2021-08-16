@@ -46,16 +46,15 @@ const CircularButton = ({
     <AwesomeButton
       width={width}
       height={width}
-      textColor={theme.colors.error}
       backgroundColor={disabled ? theme.colors.disabled : theme.colors.background}
-      backgroundDarker={disabled ? null : theme.colors.disabledShadow}
+      disabled={disabled}
+      backgroundDarker={theme.colors.disabledShadow}
       borderRadius={200}
       textSize={theme.fonts.size.bigLogo}
       textFontFamily={theme.fonts.sampleText}
       style={containerStyles}
       onPress={handlePress}
       stretch={full}
-      disabled={disabled}
       borderWidth={1}
       borderColor={theme.colors.disabledShadow}
     >

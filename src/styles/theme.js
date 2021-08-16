@@ -14,7 +14,8 @@ const theme = {
     disabledShadow: '#A3A3A3',
     textPrimary: '#FFFFFF',
     textSecondary: '#5F5F5F',
-    backgroundTitles: '#F2F2F2', 
+    backgroundTitles: '#F2F2F2',
+    info: '#FFD700',
   },
   fonts: {
     titleOutline: 'londrinaOutline-regular',

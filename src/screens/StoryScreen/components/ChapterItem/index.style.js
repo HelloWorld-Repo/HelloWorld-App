@@ -13,6 +13,18 @@ const styles = StyleSheet.create({
         fontFamily: theme.fonts.titleSolidBlack,
         color: theme.colors.accent,
         fontSize: theme.fonts.size.bigLogo
+    },
+
+    labelCompleted: {
+        fontFamily: theme.fonts.titleSolidBlack,
+        color: theme.colors.textPrimary,
+        fontSize: theme.fonts.size.bigLogo
+    },
+
+    starIcon: { 
+        height: 25, 
+        width: 25, 
+        marginLeft: theme.spacing(1) 
     }
 });
 
