@@ -10,6 +10,13 @@ const styles = StyleSheet.create({
     paddingVertical: theme.spacing(3),
     marginVertical: theme.spacing(1),
     textAlign: 'center'
+  },
+  list: {
+    flexDirection: 'row', 
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    marginTop: theme.spacing(6),
+    marginBottom: theme.spacing(3) // The chapter item there is margin botton, then this value is result of 6(required margin) - 3(chapter item margin)
   }
 });
 

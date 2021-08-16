@@ -1,4 +1,5 @@
 import React from 'react'
+import { View } from 'react-native';
 import { Text } from 'react-native-paper';
 import ChapterItem from '../ChapterItem';
 
@@ -8,7 +9,9 @@ const ModuleItem = ({ module }) => {
   return (
     <>
       <Text style={styles.text}>{module.title}</Text>
-      {module.chapters.map((chapter) => < ChapterItem chapter={chapter} key={chapter.id} />)}
+      <View style={styles.list}>
+        {module.chapters.map((chapter) => <ChapterItem chapter={chapter} key={chapter.id} />)}
+      </View>
     </>
   );
 }
