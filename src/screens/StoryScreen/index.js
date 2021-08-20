@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { ScrollView } from 'react-native';
 
 import StoryService from '../../services/StoryService';
 import ModuleItem from './components/ModuleItem';
@@ -7,7 +8,15 @@ const StoryScreen = () => {
   const [modules, setModules] = useState([]);
 
   useEffect(() => {
-    updateModulesAndChapters();
+    let isRendered = true;
+    
+    if(isRendered){
+      updateModulesAndChapters();
+    }
+
+    return () => {
+      isRendered = false;
+    };
   }, [])
 
   const updateModulesAndChapters = async() => {
@@ -20,9 +29,9 @@ const StoryScreen = () => {
   }
 
   return (
-    <>
+    <ScrollView>
       {modules.map((module) => <ModuleItem key={module.id} module={module}/>)}
-    </>
+    </ScrollView>
   )
 }
 
