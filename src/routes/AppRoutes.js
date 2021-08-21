@@ -4,6 +4,8 @@ import { useTheme } from 'react-native-paper';
 
 import OnboardingScreen from '../screens/OnboardingScreen';
 import TabsScreen from '../screens/TabsScreen';
+import ExplanationScreen from '../screens/ExplanationScreen';
+import { TitleText } from '../components';
 
 const AppRoutes = () => {
   const Stack = createStackNavigator();
@@ -35,6 +37,15 @@ const AppRoutes = () => {
         component={OnboardingScreen}
         options={{
           headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Explanation"
+        component={ExplanationScreen}
+        options={{
+          headerShown: true,
+          headerTitle: TitleText,
+          headerTitleAlign: 'center',
         }}
       />
     </Stack.Navigator>
