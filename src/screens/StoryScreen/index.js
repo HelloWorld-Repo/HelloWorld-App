@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, Text } from 'react-native';
 
 import StoryService from '../../services/StoryService';
 import ModuleItem from './components/ModuleItem';
+
+import { Modal } from '../../components';
 
 const StoryScreen = ({ navigation }) => {
   const [modules, setModules] = useState([]);
@@ -29,11 +31,16 @@ const StoryScreen = ({ navigation }) => {
   };
 
   return (
-    <ScrollView>
-      {modules.map((module) => (
-        <ModuleItem key={module.id} module={module} navigation={navigation} />
-      ))}
-    </ScrollView>
+    <>
+      <ScrollView>
+        {modules.map((module) => (
+          <ModuleItem key={module.id} module={module} navigation={navigation} />
+        ))}
+      </ScrollView>
+      <Modal visible>
+        <Text>Testando Modal</Text>
+      </Modal>
+    </>
   );
 };
 

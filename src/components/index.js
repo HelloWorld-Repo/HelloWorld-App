@@ -5,6 +5,7 @@ import Toast from './Toast';
 import DateField from './DateField';
 import SwitchGroup from './SwitchGroup';
 import CircularButton from './CircularButton';
+import Modal from './Modal';
 
 export { 
   Button, 
@@ -13,5 +14,6 @@ export {
   Toast,
   DateField,
   SwitchGroup,
-  CircularButton
+  CircularButton,
+  Modal
 };

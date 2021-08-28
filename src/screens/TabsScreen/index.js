@@ -1,10 +1,5 @@
 import React, { useState } from 'react';
-import {
-  BottomNavigation,
-  Text,
-  useTheme,
-  Appbar,
-} from 'react-native-paper';
+import { BottomNavigation, Text, useTheme, Appbar } from 'react-native-paper';
 import { Image, View } from 'react-native';
 
 import styles from './index.style';
@@ -23,11 +18,12 @@ const AlbumsRoute = () => <Text>Albums</Text>;
 const RecentsRoute = () => {
   const { user, signOut } = useApplicationProvider();
   return (
-  <>
-    <Text>{user?.token}</Text>
-    <Button onPress={signOut} text="Sair" full />
-  </>
-)};
+    <>
+      <Text>{user?.token}</Text>
+      <Button onPress={signOut} text="Sair" full />
+    </>
+  );
+};
 
 const TabsScreen = () => {
   const [index, setIndex] = useState(0);
