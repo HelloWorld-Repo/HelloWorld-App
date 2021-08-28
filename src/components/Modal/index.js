@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Modal, Portal, Text, Provider } from 'react-native-paper';
+import { Modal, Portal, Provider } from 'react-native-paper';
 import PropTypes from 'prop-types';
 
 import styles from './index.style';
@@ -12,7 +12,7 @@ const NewModal = ({ visible = false, onDismiss = () => {}, style = {}, contentSt
         <Modal
           visible={visible}
           onDismiss={onDismiss}
-          contentContainerStyle={[contentStyle, styles.container]}
+          contentContainerStyle={[styles.container, contentStyle]}
           style={styles.modal}
         >
           {children}

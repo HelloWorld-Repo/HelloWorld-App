@@ -35,6 +35,7 @@ const theme = {
       text: 20,
       bigLogo: 45,
       small: 15,
+      titlesScreen: 50
     },
   },
 };

@@ -1,45 +1,46 @@
 import React, { useEffect, useState } from 'react';
-import { ScrollView, Text } from 'react-native';
+import { ScrollView } from 'react-native';
 
+import { useApplicationProvider } from '../../providers/ApplicationProvider';
+import { SafeAreaAndroid } from '../../components';
 import StoryService from '../../services/StoryService';
 import ModuleItem from './components/ModuleItem';
-
-import { Modal } from '../../components';
+import FeedbackModal from './components/FeedbackModal';
+import styles from './index.style';
+import { Text } from 'react-native-paper';
 
 const StoryScreen = ({ navigation }) => {
+  const { user } = useApplicationProvider();
   const [modules, setModules] = useState([]);
+  const [visible, setVisible] = useState(user?.askForFeedback);
 
   useEffect(() => {
     let isRendered = true;
 
-    if (isRendered) {
-      updateModulesAndChapters();
-    }
+    StoryService.getModulesAndChapters().then(response => {
+      if (isRendered) {
+        setModules(response);
+      }
+    }).catch(() => {
+      console.error(error);
+    })
 
     return () => {
       isRendered = false;
     };
   }, []);
 
-  const updateModulesAndChapters = async () => {
-    try {
-      const response = await StoryService.getModulesAndChapters();
-      setModules(response);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   return (
     <>
-      <ScrollView>
-        {modules.map((module) => (
-          <ModuleItem key={module.id} module={module} navigation={navigation} />
-        ))}
-      </ScrollView>
-      <Modal visible>
-        <Text>Testando Modal</Text>
-      </Modal>
+      <SafeAreaAndroid>
+        <ScrollView>
+          <Text style={styles.title}>Sua História</Text>
+          {modules.map((module) => (
+            <ModuleItem key={module.id} module={module} navigation={navigation} />
+          ))}
+        </ScrollView>
+      </SafeAreaAndroid>
+      <FeedbackModal visible={visible} onDismiss={() => setVisible(false)}/>
     </>
   );
 };
