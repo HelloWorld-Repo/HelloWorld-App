@@ -1,24 +1,30 @@
 import * as React from 'react';
-import { Modal, Portal, Provider } from 'react-native-paper';
+import { Modal, Portal } from 'react-native-paper';
 import PropTypes from 'prop-types';
 
 import styles from './index.style';
+import { ScrollView } from 'react-native';
 
-const NewModal = ({ visible = false, onDismiss = () => {}, style = {}, contentStyle = {}, children }) => {
-
+const NewModal = ({
+  visible = false,
+  onDismiss = () => {},
+  style = {},
+  contentStyle = {},
+  children,
+}) => {
   return (
-    <Provider>
-      <Portal>
-        <Modal
-          visible={visible}
-          onDismiss={onDismiss}
-          contentContainerStyle={[styles.container, contentStyle]}
-          style={styles.modal}
-        >
+    <Portal>
+      <Modal
+        visible={visible}
+        onDismiss={onDismiss}
+        contentContainerStyle={[styles.container, contentStyle]}
+        style={styles.modal}
+      >
+        <ScrollView>
           {children}
-        </Modal>
-      </Portal>
-    </Provider>
+        </ScrollView>
+      </Modal>
+    </Portal>
   );
 };
 
@@ -28,6 +34,6 @@ NewModal.propTypes = {
   style: PropTypes.object,
   children: PropTypes.node.isRequired,
   contentStyle: PropTypes.object,
-}
+};
 
 export default NewModal;

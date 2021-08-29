@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import styles from './index.style';
-import { Button, Modal } from '../../../../components';
+import { Button, CircularButton, Modal } from '../../../../components';
 import { Image, Text, View } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import theme from '../../../../styles/theme';
@@ -22,11 +22,15 @@ const FeedbackModal = ({ visible = false, onDismiss = () => {} }) => {
       <Text style={styles.question}>O que está achando até agora?</Text>
       <View style={styles.optionsContainer}>
         <View style={styles.optionsContent}>
-          <Image style={styles.icons} source={positiveImage} />
+          <CircularButton width={80} containerStyles={styles.circularButton}>
+            <Image style={styles.icons} source={positiveImage} />
+          </CircularButton>
           <Text>Estou amando!</Text>
         </View>
         <View style={styles.optionsContent}>
-          <Image style={styles.icons} source={negativeImage} />
+          <CircularButton width={80} containerStyles={styles.circularButton}>
+            <Image style={styles.icons} source={negativeImage} />
+          </CircularButton>
           <Text>Não curti muito</Text>
         </View>
       </View>
@@ -37,10 +41,16 @@ const FeedbackModal = ({ visible = false, onDismiss = () => {} }) => {
         multiline
         style={styles.textArea}
         label="Comentário"
-        selectionColor={theme.colors.accent}
+        selectionColor={theme.colors.primary}
         mode="outlined"
-        theme={{ colors: { primary: theme.colors.accent } }}
+        theme={{ colors: { primary: theme.colors.primary } }}
       ></TextInput>
+      <Button
+        onPress={() => {}}
+        text="Enviar"
+        full
+        containerStyles={styles.button}
+      />
     </Modal>
   );
 };
