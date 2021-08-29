@@ -8,7 +8,8 @@ const Toast = ({
   visible, 
   message='', 
   onDismiss = () => {}, 
-  action = null
+  action = null,
+  toastStyle = {}
 }) => {
   return (
     <Snackbar
@@ -18,7 +19,7 @@ const Toast = ({
         label: action.label,
         onPress: action.onPress,
       } : {}}
-      style={styles.toast}
+      style={[styles.toast, toastStyle]}
     >
       <Paragraph style={styles.toastText}>{message}</Paragraph>
     </Snackbar>
@@ -33,6 +34,7 @@ Toast.propTypes = {
     label: PropTypes.string.isRequired,
     onPress: PropTypes.func.isRequired
   }),
+  toastStyle: PropTypes.object
 };
 
 export default Toast;

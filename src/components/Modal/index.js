@@ -11,6 +11,7 @@ const NewModal = ({
   style = {},
   contentStyle = {},
   children,
+  dismissable = true
 }) => {
   return (
     <Portal>
@@ -19,6 +20,7 @@ const NewModal = ({
         onDismiss={onDismiss}
         contentContainerStyle={[styles.container, contentStyle]}
         style={styles.modal}
+        dismissable={dismissable}
       >
         <ScrollView>
           {children}
@@ -34,6 +36,7 @@ NewModal.propTypes = {
   style: PropTypes.object,
   children: PropTypes.node.isRequired,
   contentStyle: PropTypes.object,
+  dismissable: PropTypes.bool
 };
 
 export default NewModal;

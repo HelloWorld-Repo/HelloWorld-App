@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.error,
     borderWidth: 3,
     borderRadius: 10,
-    borderColor: theme.colors.background
+    borderColor: theme.colors.background,
   },
   
   toastText: {

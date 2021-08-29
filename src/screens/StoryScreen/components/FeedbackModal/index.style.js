@@ -29,6 +29,11 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
   },
+  selectedIcons: {
+    width: 80,
+    height: 80,
+    marginHorizontal: theme.spacing(2)
+  },
   optionsContent: {
     alignItems: 'center',
   },
@@ -40,6 +45,13 @@ const styles = StyleSheet.create({
     marginHorizontal: theme.spacing(2),
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  errorToast: {
+    marginBottom: theme.spacing(3)
+  },
+  successToast: {
+    marginBottom: theme.spacing(3),
+    backgroundColor: theme.colors.primary
   }
 });
 
