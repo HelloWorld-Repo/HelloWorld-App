@@ -7,8 +7,8 @@ import { TouchableOpacity } from 'react-native';
 import { Text, Button } from 'react-native-paper';
 import theme from '../../styles/theme';
 
-const DateField = ({ onPress, value }) => (
-  <TouchableOpacity onPress={onPress} style={styles.field}>
+const DateField = ({ onPress, value, mode='flat' }) => (
+  <TouchableOpacity onPress={onPress} style={[styles.field, styles.fieldBorder]}>
       <Text style={styles.fieldValue}>{value}</Text>
       <Button
         icon={() => (

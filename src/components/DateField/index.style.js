@@ -9,6 +9,12 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
+  fieldBorder: {
+    borderWidth: 1,
+    borderRadius: 4,
+    borderColor: theme.colors.textSecondary,
+    marginTop: 10
+  },
   fieldValue: {
     color: theme.colors.disabledShadow,
     fontFamily: theme.fonts.sampleText,

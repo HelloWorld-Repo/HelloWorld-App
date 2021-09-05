@@ -6,6 +6,7 @@ import styles from './index.style';
 import { TitleText, Button } from '../../components';
 import { useApplicationProvider } from '../../providers/ApplicationProvider';
 import StoryScreen from '../StoryScreen';
+import ProfileScreen from '../ProfileScreen';
 
 const houseIcon = require('../../../assets/icons/house.png');
 const graphIcon = require('../../../assets/icons/graph.png');
@@ -62,7 +63,7 @@ const TabsScreen = () => {
     home: StoryScreen,
     questions: AlbumsRoute,
     abstract: AlbumsRoute,
-    profile: RecentsRoute,
+    profile: ProfileScreen,
   });
 
   return (

@@ -31,8 +31,8 @@ const RegisterSchema = Yup.object().shape({
   isFirstContact: Yup.bool().required(),
   isStudent: Yup.bool().required(),
   password: Yup.string()
-    .min(8, 'Escolha uma senha de, no mínimo 8 caracteres')
-    .max(20, 'Escolha uma senha de, no máximo 20 caracteres')
+    .min(8, 'Escolha uma senha de no mínimo 8 caracteres')
+    .max(20, 'Escolha uma senha de no máximo 20 caracteres')
     .required('Você esqueceu de preencher a senha'),
   confirmPassword: Yup.string()
     .required('Você esqueceu de preencher a confirmação da senha')

@@ -13,7 +13,8 @@ const Button = ({
   containerStyles,
   onPress,
   full = false,
-  disabled = false
+  disabled = false,
+  backgroundColor
 }) => {
   const [audio, setAudio] = React.useState();
   const theme = useTheme();
@@ -46,8 +47,8 @@ const Button = ({
     <AwesomeButton
       width={width}
       textColor={theme.colors.textPrimary}
-      backgroundColor={disabled ? theme.colors.disabled : theme.colors.primary}
-      backgroundDarker={disabled ? theme.colors.disabledShadow :theme.colors.buttonShadow}
+      backgroundColor={disabled ? theme.colors.disabled : (backgroundColor || theme.colors.primary)}
+      backgroundDarker={disabled ? theme.colors.disabledShadow : (backgroundColor || theme.colors.buttonShadow)}
       borderRadius={15}
       textSize={theme.fonts.size.text}
       textFontFamily={theme.fonts.sampleText}
@@ -67,7 +68,8 @@ Button.propTypes = {
   containerStyles: ViewPropTypes.style,
   onPress: PropTypes.func,
   full: PropTypes.bool,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  backgroundColor: PropTypes.string
 };
 
 export default Button;
