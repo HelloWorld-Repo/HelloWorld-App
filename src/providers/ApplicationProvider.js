@@ -39,12 +39,9 @@ const ApplicationProvider = ({ children }) => {
   };
 
   const setUserFeedback = async () => {
-    const newUser = { ...user, askForFeedback: false }
+    const newUser = { ...user, askForFeedback: false };
     setUser(newUser);
-    await AsyncStorage.setItem(
-      '@HelloWorld:user',
-      JSON.stringify(newUser)
-    );
+    await AsyncStorage.setItem('@HelloWorld:user', JSON.stringify(newUser));
   };
 
   const signIn = async (email, password) => {
@@ -66,6 +63,11 @@ const ApplicationProvider = ({ children }) => {
     setUser(null);
   };
 
+  const updateUser = async (newUser) => {
+    await AsyncStorage.setItem('@HelloWorld:user', JSON.stringify(newUser));
+    setUser({ ...newUser, token: user.token });
+  };
+
   return (
     <ApplicationContext.Provider
       value={{
@@ -75,7 +77,8 @@ const ApplicationProvider = ({ children }) => {
         setTheme,
         signIn,
         signOut,
-        setUserFeedback
+        setUserFeedback,
+        updateUser,
       }}
     >
       {children}

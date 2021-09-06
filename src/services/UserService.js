@@ -14,6 +14,20 @@ const registerUser = async ({ confirmPassword, ...data }) => {
     });
 };
 
+const updateUser = async(data) => {
+  return api
+    .patch('user', {
+      ...data,
+    })
+    .then((response) => {
+      return response?.data?.data;
+    })
+    .catch((error) => {
+      throw error?.response?.data;
+    });
+}
+
 export default {
   registerUser,
+  updateUser
 };

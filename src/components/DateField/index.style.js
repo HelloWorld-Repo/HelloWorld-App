@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 4,
     borderColor: theme.colors.textSecondary,
-    marginTop: 10
+    paddingVertical: theme.spacing(0.5)
   },
   fieldValue: {
     color: theme.colors.disabledShadow,

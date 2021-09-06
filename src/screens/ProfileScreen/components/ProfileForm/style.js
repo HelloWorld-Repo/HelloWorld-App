@@ -8,7 +8,8 @@ const styles = StyleSheet.create({
   input: {
     backgroundColor: theme.colors.background,
     fontFamily: theme.fonts.sampleText,
-    fontSize: theme.fonts.size.small
+    fontSize: theme.fonts.size.small,
+    marginTop: theme.spacing(2)
   }
 });
 

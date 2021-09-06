@@ -6,15 +6,8 @@ import _ from 'underscore';
 import moment from 'moment';
 
 import { Button, DateField, SwitchGroup } from '../../../../components';
+import { formatCustomDate } from '../../../../utils';
 import styles from './index.style';
-
-const formatCustomDate = (date) => {
-  return `
-    ${date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()}/${
-    date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1
-  }/${date.getFullYear()}
-  `;
-};
 
 const RegisterForm = ({
   handleChange,
