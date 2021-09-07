@@ -1,22 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Text, ScrollView, View } from 'react-native';
 import { Formik } from 'formik';
-import { ActivityIndicator, useTheme } from 'react-native-paper';
+import {
+  ActivityIndicator,
+  useTheme,
+  Button as ButtonPaper,
+} from 'react-native-paper';
 import * as Yup from 'yup';
 import _ from 'underscore';
 
 import styles from './style';
 import ProfileForm from './components/ProfileForm';
 import { useApplicationProvider } from '../../providers/ApplicationProvider';
-import { SafeAreaAndroid, Button, Toast } from '../../components';
+import { SafeAreaAndroid, Button, Toast, Modal } from '../../components';
 import { stringToDate } from '../../utils';
 import UserService from '../../services/UserService';
 
-const ProfileScreen = ({ navigation }) => {
+const ProfileScreen = () => {
   const theme = useTheme();
   const { signOut, user, updateUser } = useApplicationProvider();
 
   const [loading, setLoading] = useState(false);
+  const [deleteUserConfirmation, setDeleteUserConfirmation] = useState(false);
+
   const [toast, setToast] = useState({
     visible: false,
     type: null,
@@ -38,6 +44,31 @@ const ProfileScreen = ({ navigation }) => {
       .email('E-mail inválido')
       .required('Você esqueceu de preencher o e-mail'),
   });
+
+  const handleRemoveAccount = async () => {
+    try {
+      setLoading(true);
+      await UserService.deleteUser();
+      setLoading(false);
+
+      await signOut;
+
+      setDeleteUserConfirmation(false);
+
+      setToast({
+        message: 'Usuário removido com sucesso',
+        visible: true,
+        type: 'success',
+      });
+    } catch (error) {
+      setToast({
+        message: error?.message || 'Ops, aconteceu um erro, tente novamente',
+        visible: true,
+        type: 'error',
+      });
+      setLoading(false);
+    }
+  };
 
   const onSubmitUpdate = async (data) => {
     try {
@@ -110,12 +141,16 @@ const ProfileScreen = ({ navigation }) => {
           </Formik>
         </View>
         <View style={styles.container}>
-          <Button
-            onPress={signOut}
-            text="Sair"
-            full
-            backgroundColor={theme.colors.error}
-          />
+          <ButtonPaper
+            onPress={() => setDeleteUserConfirmation(true)}
+            type="text"
+            color={theme.colors.textSecondary}
+          >
+            Excluir Conta
+          </ButtonPaper>
+          <ButtonPaper onPress={signOut} type="text" color={theme.colors.error}>
+            Sair
+          </ButtonPaper>
         </View>
       </ScrollView>
       <Toast
@@ -124,6 +159,24 @@ const ProfileScreen = ({ navigation }) => {
         onDismiss={() => setToast({ visible: false })}
         type={toast.type}
       />
+      <Modal
+        contentStyle={styles.modal}
+        visible={deleteUserConfirmation}
+        onDismiss={() => setDeleteUserConfirmation(false)}
+      >
+        <Text style={styles.modalText}>
+          Você tem certeza que deseja excluir essa conta e todos os dados
+          relacionados à ela?
+        </Text>
+        <Button
+          full
+          text="Não, cancelar"
+          onPress={() => setDeleteUserConfirmation(false)}
+        />
+        <ButtonPaper onPress={handleRemoveAccount} type="text">
+          Sim, tenho certeza
+        </ButtonPaper>
+      </Modal>
     </SafeAreaAndroid>
   );
 };

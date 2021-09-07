@@ -27,7 +27,19 @@ const updateUser = async(data) => {
     });
 }
 
+const deleteUser = async() => {
+  return api
+    .delete('user')
+    .then((response) => {
+      return response?.data?.data;
+    })
+    .catch((error) => {
+      throw error?.response?.data;
+    });
+}
+
 export default {
   registerUser,
-  updateUser
+  updateUser,
+  deleteUser
 };

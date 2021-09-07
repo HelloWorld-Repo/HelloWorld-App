@@ -8,7 +8,6 @@ import { ScrollView } from 'react-native';
 const NewModal = ({
   visible = false,
   onDismiss = () => {},
-  style = {},
   contentStyle = {},
   children,
   dismissable = true

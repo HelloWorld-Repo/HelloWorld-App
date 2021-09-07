@@ -15,6 +15,20 @@ const styles = StyleSheet.create({
     paddingVertical: theme.spacing(1),
     justifyContent: "space-around",
     flex: 1
+  },
+  cancelButton: {
+    marginTop: theme.spacing(2)
+  },
+  modal: {
+    paddingHorizontal: theme.spacing(5),
+    paddingVertical: theme.spacing(3)
+  },
+  modalText: {
+    alignSelf: 'center',
+    fontSize: theme.fonts.size.text,
+    fontFamily: theme.fonts.sampleText,
+    color: theme.colors.textSecondary,
+    marginVertical: theme.spacing(2)
   }
 
 });
