@@ -47,3 +47,13 @@ jobs:
         run: npm install
       - name: Expo Publish Channel
         run: expo publish --non-interactive --release-channel staging
+      - name: Add Comment To PR
+        uses: mshick/add-pr-comment@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          EXPO_PROJECT: "@gabimsilva2010/helloworld-app"
+        with:
+          message: |
+            ## Application
+            ![Expo QR](https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=exp://exp.host/${{ env.EXPO_PROJECT }}?release-channel=pr${{ github.event.number }})
+            Published to https://exp.host/${{ env.EXPO_PROJECT }}?release-channel=pr${{ github.event.number }}
