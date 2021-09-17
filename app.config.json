@@ -1,9 +1,0 @@
-{
-  "expo": {
-    "name": "Hello World",
-    "slug": "hello-world-app"
-  },
-  "android": {
-    "package": "com.gabrielasilva.helloworld"
-  }
-}
