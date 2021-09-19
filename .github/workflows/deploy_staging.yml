@@ -29,6 +29,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           EXPO_PROJECT: "@gabimsilva2010/helloworld-app"
+          API_URL: ${{ secrets.API_URL }}
         with:
           message: |
             ## Application
