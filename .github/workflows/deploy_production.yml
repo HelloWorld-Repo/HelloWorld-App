@@ -27,7 +27,7 @@ jobs:
           expo-username: ${{ secrets.EXPO_CLI_USERNAME }}
           expo-password: ${{ secrets.EXPO_CLI_PASSWORD }}
           expo-cache: true
-      - uses: rlespinasse/github-slug-action@v2.x
+      - uses: rlespinasse/github-slug-action@v3.x
       - name: Generate Release Channel # Release Channels are named prod-<Major Release>, i.e. prod-1, prod-3
         id: releaseChannel
         run: |
@@ -77,7 +77,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: rlespinasse/github-slug-action@v2.x
+      - uses: rlespinasse/github-slug-action@v3.x
       - uses: expo/expo-github-action@v5
         with:
           expo-packager: npm
