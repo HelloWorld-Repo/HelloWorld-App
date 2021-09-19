@@ -90,6 +90,7 @@ jobs:
         env:
           APP_BUILD_VERSION: ${{ github.run_number }}
           APP_BINARY_VERSION: ${{ needs.deploy_prod.outputs.latestBinaryVersion }}
+          API_URL: ${{ secrets.API_URL }}
         run: |
           expo build:android --release-channel=${{ needs.deploy_prod.outputs.releaseChannel }} > buildLogAndroid.txt
           cat buildLogAndroid.txt
