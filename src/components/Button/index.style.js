@@ -5,9 +5,8 @@ const styles = StyleSheet.create({
     button: ({
     }),
     labelButton: ({
-        color: theme.colors.textPrimary,
         fontSize: theme.fonts.size.text,
-        fontFamily: theme.fonts.sampleText
+        fontFamily: theme.fonts.sampleText,
     })
 });
 

@@ -16,6 +16,8 @@ const theme = {
     textSecondary: '#5F5F5F',
     backgroundTitles: '#F2F2F2',
     info: '#FFD700',
+    success: 'rgba(0, 223, 192, 0.25)',
+    secondaryError: 'rgba(255, 0, 15, 0.25)'
   },
   fonts: {
     titleOutline: 'londrinaOutline-regular',

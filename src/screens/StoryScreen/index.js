@@ -15,18 +15,20 @@ const StoryScreen = ({ navigation }) => {
   const [visible, setVisible] = useState(user?.askForFeedback);
 
   useEffect(() => {
-    let isRendered = true;
+    let isRendered = false;
 
-    StoryService.getModulesAndChapters().then(response => {
-      if (isRendered) {
-        setModules(response);
-      }
-    }).catch(() => {
-      console.error(error);
-    })
+    if (!isRendered) {
+      StoryService.getModulesAndChapters()
+        .then((response) => {
+          setModules(response);
+        })
+        .catch(() => {
+          console.error(error);
+        });
+    }
 
     return () => {
-      isRendered = false;
+      isRendered = true;
     };
   }, []);
 
@@ -36,11 +38,15 @@ const StoryScreen = ({ navigation }) => {
         <ScrollView>
           <Text style={styles.title}>Sua História</Text>
           {modules.map((module) => (
-            <ModuleItem key={module.id} module={module} navigation={navigation} />
+            <ModuleItem
+              key={module.id}
+              module={module}
+              navigation={navigation}
+            />
           ))}
         </ScrollView>
       </SafeAreaAndroid>
-      <FeedbackModal visible={visible} onDismiss={() => setVisible(false)}/>
+      <FeedbackModal visible={visible} onDismiss={() => setVisible(false)} />
     </>
   );
 };
