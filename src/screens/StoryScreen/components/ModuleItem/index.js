@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { Text } from 'react-native-paper';
 import ChapterItem from '../ChapterItem';
 
-import styles from './index.style';
+import styles from './style';
 
 const ModuleItem = ({ module }) => {
   return (

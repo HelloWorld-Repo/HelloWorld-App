@@ -9,7 +9,11 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.backgroundTitles,
     paddingVertical: theme.spacing(3),
     marginVertical: theme.spacing(1),
-    textAlign: 'center'
+    marginHorizontal: theme.spacing(2),
+    textAlign: 'center',
+    width: 'auto',
+    borderBottomLeftRadius: 40,
+    borderBottomRightRadius: 40
   },
   list: {
     flexDirection: 'row', 
