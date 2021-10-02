@@ -3,7 +3,6 @@ import { View } from 'react-native';
 import { Title, useTheme } from 'react-native-paper';
 import { Button, SafeAreaAndroid } from '../../components';
 import styles from './index.style';
-import screens from '../OnboardingScreen/screens';
 
 const HomeScreen = ({ navigation }) => {
   const theme = useTheme();

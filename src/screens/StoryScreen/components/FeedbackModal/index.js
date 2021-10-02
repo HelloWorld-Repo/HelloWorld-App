@@ -26,8 +26,6 @@ const FeedbackModal = ({ visible = false, onDismiss = () => {} }) => {
   };
 
   const handleClick = async () => {
-    console.log(selected === options.positive, text);
-
     FeedbackService.sendFeedback(selected === options.positive, text || ' ')
       .then(() => {
         setUserFeedback();

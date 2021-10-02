@@ -2,6 +2,9 @@ import { StyleSheet } from 'react-native';
 import theme from '../../styles/theme';
 
 const styles = StyleSheet.create({
+  loading: {
+    marginTop: theme.spacing(2)
+  },  
   title: {
     fontSize: theme.fonts.size.title,
     color: theme.colors.textSecondary,

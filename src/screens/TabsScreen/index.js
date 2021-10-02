@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
-import { BottomNavigation, Text, useTheme, Appbar } from 'react-native-paper';
+import {
+  BottomNavigation,
+  Text,
+  useTheme,
+  Appbar,
+  Title,
+} from 'react-native-paper';
 import { Image, View } from 'react-native';
 
 import styles from './index.style';
-import { TitleText, Button } from '../../components';
+import { TitleText, Button, Modal } from '../../components';
 import { useApplicationProvider } from '../../providers/ApplicationProvider';
 import StoryScreen from '../StoryScreen';
 import ProfileScreen from '../ProfileScreen';
@@ -16,20 +22,12 @@ const starIcon = require('../../../assets/icons/star.png');
 
 const AlbumsRoute = () => <Text>Albums</Text>;
 
-const RecentsRoute = () => {
-  const { user, signOut } = useApplicationProvider();
-  return (
-    <>
-      <Text>{user?.token}</Text>
-      <Button onPress={signOut} text="Sair" full />
-    </>
-  );
-};
-
-const TabsScreen = () => {
+const TabsScreen = ({ route }) => {
   const [index, setIndex] = useState(0);
+  const [completedModalVisible, setCompletedModalVisible] = useState(
+    !!route?.params?.completedChapter
+  );
   const { user } = useApplicationProvider();
-
   const theme = useTheme();
 
   const [routes] = useState([
@@ -82,6 +80,16 @@ const TabsScreen = () => {
         shifting={true}
         barStyle={styles.bar}
       />
+      <Modal visible={completedModalVisible} onDismiss={() => setCompletedModalVisible}>
+        <Title
+          style={styles.modalTitle}
+        >
+          Capítulo Completado
+        </Title>
+        <Text>
+          Parabéns! Você acaba de finalizar mais uma etapa do seu aprendizado
+        </Text>
+      </Modal>
     </>
   );
 };

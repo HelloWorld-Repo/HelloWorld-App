@@ -1,10 +1,9 @@
 import api from './api';
 
-const sendFeedback = async (liked, text) => {
+const saveChapterDone = (chapterId) => {
   return api
-    .post('feedback', {
-      liked,
-      text,
+    .post('history', {
+      chapterId,
     })
     .then((response) => {
       return response?.data?.data;
@@ -15,5 +14,5 @@ const sendFeedback = async (liked, text) => {
 };
 
 export default {
-  sendFeedback,
-};
+  saveChapterDone
+}
