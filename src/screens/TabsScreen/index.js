@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   BottomNavigation,
   Text,
@@ -20,7 +20,62 @@ const personIcon = require('../../../assets/icons/person.png');
 const questionsIcon = require('../../../assets/icons/questions.png');
 const starIcon = require('../../../assets/icons/star.png');
 
+const successImage = require('../../../assets/images/success.png');
+
+import { Audio } from 'expo-av';
+
 const AlbumsRoute = () => <Text>Albums</Text>;
+
+const SuccessModal = ({ visible, onDismiss }) => {
+  const [audio, setAudio] = useState();
+  const theme = useTheme();
+
+  useEffect(() => {
+    return audio
+      ? () => {
+          audio.unloadAsync();
+        }
+      : undefined;
+  }, [audio]);
+
+  useEffect(() => {
+    playSound();
+  }, []);
+
+  const playSound = async () => {
+    const { sound } = await Audio.Sound.createAsync(
+      require('../../../assets/sounds/clapping.wav')
+    );
+    if (visible) {
+      setAudio(sound);
+      sound.playAsync();
+    }
+  };
+
+  return (
+    <Modal visible={visible} onDismiss={onDismiss}>
+      <Title style={styles.modalTitle}>Capítulo Completado</Title>
+      <Image
+        source={successImage}
+        style={{ width: 'auto', height: 350, alignSelf: 'stretch' }}
+      />
+      <Text
+        style={{
+          marginVertical: theme.spacing(4),
+          fontSize: theme.fonts.size.text,
+          textAlign: 'center',
+        }}
+      >
+        Parabéns! Você acaba de finalizar mais uma etapa do seu aprendizado
+      </Text>
+      <Button
+        text="Obrigad@!"
+        full
+        onPress={onDismiss}
+      />
+    </Modal>
+  );
+};
 
 const TabsScreen = ({ route }) => {
   const [index, setIndex] = useState(0);
@@ -80,16 +135,10 @@ const TabsScreen = ({ route }) => {
         shifting={true}
         barStyle={styles.bar}
       />
-      <Modal visible={completedModalVisible} onDismiss={() => setCompletedModalVisible}>
-        <Title
-          style={styles.modalTitle}
-        >
-          Capítulo Completado
-        </Title>
-        <Text>
-          Parabéns! Você acaba de finalizar mais uma etapa do seu aprendizado
-        </Text>
-      </Modal>
+      <SuccessModal
+        visible={completedModalVisible}
+        onDismiss={() => setCompletedModalVisible(false)}
+      ></SuccessModal>
     </>
   );
 };
