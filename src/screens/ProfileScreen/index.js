@@ -164,6 +164,7 @@ const ProfileScreen = () => {
         visible={deleteUserConfirmation}
         onDismiss={() => setDeleteUserConfirmation(false)}
       >
+        <Text style={styles.modalTitle}>Confirmação de Exclusão</Text>
         <Text style={styles.modalText}>
           Você tem certeza que deseja excluir essa conta e todos os dados
           relacionados à ela?

@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     padding: theme.spacing(3)
   },
   title: {
-    fontFamily: theme.fonts.titleSketch,
+    fontFamily: theme.fonts.titleShadow,
     fontSize: theme.fonts.size.title,
     color: theme.colors.primary,
     textAlign: 'center',

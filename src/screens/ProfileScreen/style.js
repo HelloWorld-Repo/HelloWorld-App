@@ -10,6 +10,14 @@ const styles = StyleSheet.create({
     color: theme.colors.accent,
     marginVertical: theme.spacing(2)
   },
+  modalTitle: {
+    alignSelf: 'center',
+    fontSize: theme.fonts.size.title,
+    fontFamily: theme.fonts.titleSolidBlack,
+    color: theme.colors.accent,
+    marginVertical: theme.spacing(2),
+    textAlign: 'center'
+  },
   container: {
     paddingHorizontal: theme.spacing(3),
     paddingVertical: theme.spacing(1),
@@ -21,9 +29,10 @@ const styles = StyleSheet.create({
   },
   modal: {
     paddingHorizontal: theme.spacing(5),
-    paddingVertical: theme.spacing(3)
+    paddingVertical: theme.spacing(3),
   },
   modalText: {
+    textAlign: 'center',
     alignSelf: 'center',
     fontSize: theme.fonts.size.text,
     fontFamily: theme.fonts.sampleText,
