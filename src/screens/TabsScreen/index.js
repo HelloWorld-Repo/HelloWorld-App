@@ -13,6 +13,7 @@ import { useApplicationProvider } from '../../providers/ApplicationProvider';
 import StoryScreen from '../StoryScreen';
 import ProfileScreen from '../ProfileScreen';
 import SuccessModal from './components/SuccessModal';
+import DevelopingScreen from '../DevelopingScreen';
 
 const houseIcon = require('../../../assets/icons/house.png');
 const graphIcon = require('../../../assets/icons/graph.png');
@@ -34,7 +35,7 @@ const TabsScreen = ({ route }) => {
     {
       key: 'home',
       icon: ({ tintColor }) => (
-        <Image source={houseIcon} style={styles.houseStyle} />
+        <Image source={houseIcon} style={[styles.houseStyle, styles.noSelected]} />
       ),
     },
     {
@@ -59,8 +60,8 @@ const TabsScreen = ({ route }) => {
 
   const renderScene = BottomNavigation.SceneMap({
     home: StoryScreen,
-    questions: AlbumsRoute,
-    abstract: AlbumsRoute,
+    questions: DevelopingScreen,
+    abstract: DevelopingScreen,
     profile: ProfileScreen,
   });
 

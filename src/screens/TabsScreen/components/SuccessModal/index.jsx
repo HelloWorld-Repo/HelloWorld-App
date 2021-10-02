@@ -35,7 +35,7 @@ const SuccessModal = ({ visible, onDismiss }) => {
   };
 
   return (
-    <Modal visible={true} onDismiss={onDismiss}>
+    <Modal visible={visible} onDismiss={onDismiss}>
       <Title style={styles.modalTitle}>Capítulo Completado</Title>
       <Image
         source={successImage}
