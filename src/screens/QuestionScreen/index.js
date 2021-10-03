@@ -12,6 +12,7 @@ import { Button, Toast } from '../../components';
 import QuestionService from '../../services/QuestionService';
 import ChapterService from '../../services/ChapterService';
 import styles from './style';
+import Option from './components/Option';
 
 const QuestionScreen = ({ route, navigation }) => {
   const { questions, index, answers } = route.params;
@@ -62,12 +63,13 @@ const QuestionScreen = ({ route, navigation }) => {
       setLoading(true);
       try {
         await QuestionService.sendAnswers(answers);
-        if (majorityIsCorrect())
+        const completedChapter = majorityIsCorrect()
+        if (completedChapter)
           await ChapterService.saveChapterDone(question.chapterId);
 
         navigation.reset({
           index: 0,
-          routes: [{ name: 'Tabs', params: { completedChapter: true } }],
+          routes: [{ name: 'Tabs', params: { completedChapter } }],
         });
       } catch (error) {
         console.error(error);
@@ -78,50 +80,6 @@ const QuestionScreen = ({ route, navigation }) => {
     }
     navigation.dispatch(
       StackActions.replace('Question', { questions, index: index + 1, answers })
-    );
-  };
-
-  const renderOption = (option) => {
-    const isSelected = selecteds.includes(option.id);
-
-    return (
-      <View>
-        {isSelected && (
-          <PaperButton
-            disabled
-            uppercase={false}
-            style={{
-              backgroundColor: option.isRight
-                ? theme.colors.success
-                : theme.colors.secondaryError,
-              paddingVertical: theme.spacing(1),
-              borderRadius: 15,
-            }}
-          >
-            <Text
-              style={{
-                fontFamily: theme.fonts.sampleText,
-                fontSize: theme.fonts.size.text,
-                color: theme.colors.textSecondary,
-              }}
-            >
-              {option.text}
-            </Text>
-          </PaperButton>
-        )}
-        {!isSelected && (
-          <Button
-            text={option.text}
-            backgroundColor={theme.colors.background}
-            backgroundDarker={theme.colors.disabled}
-            textColor={theme.colors.textSecondary}
-            full
-            onPress={() => handleAnswerClick(option)}
-            raiseLevel={2}
-            disabled={selecteds.length >= correctLength}
-          />
-        )}
-      </View>
     );
   };
 
@@ -145,7 +103,12 @@ const QuestionScreen = ({ route, navigation }) => {
 
         {options.map((option) => (
           <View style={styles.option} key={option.id}>
-            {renderOption(option)}
+            <Option
+              option={option}
+              isSelected={selecteds.includes(option.id)}
+              onSelect={(option) => handleAnswerClick(option)}
+              disabled={selecteds.length >= correctLength}
+            ></Option>
           </View>
         ))}
         {selecteds.length >= correctLength && (
