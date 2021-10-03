@@ -35,13 +35,13 @@ const Option = ({ option, isSelected, onSelect, disabled }) => {
 };
 
 Option.propTypes = {
-  option: PropTypes.objectOf({
-    isRight: PropTypes.bool,
-    text: PropTypes.string,
-  }),
-  isSelected: PropTypes.bool,
-  onSelect: PropTypes.func,
-  disabled: PropTypes.bool,
+  option: PropTypes.shape({
+    isRight: PropTypes.bool.isRequired,
+    text: PropTypes.string.isRequired,
+  }).isRequired,
+  isSelected: PropTypes.bool.isRequired,
+  onSelect: PropTypes.func.isRequired,
+  disabled: PropTypes.bool.isRequired,
 };
 
 export default Option;

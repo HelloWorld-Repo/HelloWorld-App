@@ -12,12 +12,14 @@ const styles = StyleSheet.create({
     marginVertical: theme.spacing(4),
     textAlign: 'center',
   },
-
-  questionDescription: {
+  containerDescription: {
     backgroundColor: theme.colors.disabled,
     paddingVertical: theme.spacing(4),
     paddingHorizontal: theme.spacing(2),
+  },
+  questionDescription: {
     fontSize: theme.fonts.size.text,
+    lineHeight: 30
   },
 
   qttText: {

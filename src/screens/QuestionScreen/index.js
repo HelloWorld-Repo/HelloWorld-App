@@ -13,6 +13,7 @@ import QuestionService from '../../services/QuestionService';
 import ChapterService from '../../services/ChapterService';
 import styles from './style';
 import Option from './components/Option';
+import GapQuestion from './components/GapQuestion';
 
 const QuestionScreen = ({ route, navigation }) => {
   const { questions, index, answers } = route.params;
@@ -63,7 +64,7 @@ const QuestionScreen = ({ route, navigation }) => {
       setLoading(true);
       try {
         await QuestionService.sendAnswers(answers);
-        const completedChapter = majorityIsCorrect()
+        const completedChapter = majorityIsCorrect();
         if (completedChapter)
           await ChapterService.saveChapterDone(question.chapterId);
 
@@ -98,8 +99,14 @@ const QuestionScreen = ({ route, navigation }) => {
       />
       <ScrollView>
         <Text style={styles.title}>HORA DA PRÁTICA</Text>
-        <Text style={styles.questionDescription}>{question.description}</Text>
-        <Text style={styles.qttText}>{`Escolha ${correctLength} opção:`}</Text>
+        <View style={styles.containerDescription}>
+          {parseInt(question.type) === 2 ? (
+            <GapQuestion partsOfDescription={question.description.split('_')}></GapQuestion>
+          ) : (
+            <Text style={styles.questionDescription}>{question.description}</Text>
+          )}
+          </View>
+        <Text style={styles.qttText}>{`Escolha ${correctLength} ${options.length !== 1 ? 'opções' : 'opção'}:`}</Text>
 
         {options.map((option) => (
           <View style={styles.option} key={option.id}>
