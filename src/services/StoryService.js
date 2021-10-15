@@ -1,6 +1,6 @@
 import api from './api';
 
-const getModulesAndChapters = async (email, password) => {
+const getModulesAndChapters = async () => {
   return api
     .get('modules')
     .then((response) => {
@@ -11,6 +11,18 @@ const getModulesAndChapters = async (email, password) => {
     });
 };
 
+const getChapters = async () => {
+  return api
+    .get('chapters')
+    .then((response) => {
+      return response?.data?.data;
+    })
+    .catch((error) => {
+      throw error?.response?.data;
+    });
+};
+
 export default {
   getModulesAndChapters,
+  getChapters
 };

@@ -30,6 +30,7 @@ const LoginScreen = ({ navigation }) => {
       setLoading(true);
       await signIn(email, password);
     } catch (error) {
+      console.error(error)
       setError(error?.message || 'Ops, aconteceu um erro, tente novamente');
     } finally {
       setLoading(false);

@@ -37,17 +37,19 @@ const ExplanationScreen = ({ route }) => {
 
   const handleOnPress = async () => {
     try {
-      const questions = await QuestionService.getQuestionsFromChapter(
-        chapter.id
-      );
-      navigation.push('Question', {
-        questions: questions,
-        index: 0,
-        answers: [],
-      });
+      const questions = await QuestionService.getQuestionsFromChapter(chapter.id);
+
+      if(questions.length === 0) {
+        setError('Ainda não foram cadastradas questões para esse capítulo');
+      } else {
+        navigation.push('Question', {
+          questions: questions,
+          index: 0,
+          answers: [],
+        });
+      }
     } catch (error) {
       console.error(error);
-      setError('Erro ao recuperar questões, tente novamente mais tarde');
     }
   };
 

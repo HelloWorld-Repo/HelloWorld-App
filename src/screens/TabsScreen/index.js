@@ -14,6 +14,7 @@ import StoryScreen from '../StoryScreen';
 import ProfileScreen from '../ProfileScreen';
 import SuccessModal from './components/SuccessModal';
 import DevelopingScreen from '../DevelopingScreen';
+import QuestionFilterScreen from '../QuestionFilterScreen';
 
 const houseIcon = require('../../../assets/icons/house.png');
 const graphIcon = require('../../../assets/icons/graph.png');
@@ -60,7 +61,7 @@ const TabsScreen = ({ route }) => {
 
   const renderScene = BottomNavigation.SceneMap({
     home: StoryScreen,
-    questions: DevelopingScreen,
+    questions: QuestionFilterScreen,
     abstract: DevelopingScreen,
     profile: ProfileScreen,
   });

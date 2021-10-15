@@ -16,7 +16,7 @@ import Option from './components/Option';
 import GapQuestion from './components/GapQuestion';
 
 const QuestionScreen = ({ route, navigation }) => {
-  const { questions, index, answers } = route.params;
+  const { questions, index, answers, query, type } = route.params;
 
   const [selecteds, setSelecteds] = useState([]);
   const [error, setError] = useState(null);
@@ -28,7 +28,6 @@ const QuestionScreen = ({ route, navigation }) => {
   const correctLength = corrects.length;
 
   const isLast = index >= questions.length - 1;
-
   const theme = useTheme();
 
   const handleAnswerClick = (option) => {
@@ -84,6 +83,38 @@ const QuestionScreen = ({ route, navigation }) => {
     );
   };
 
+  const handleNextClickRandom = async () => {
+    setLoading(true);
+    try {
+      await QuestionService.sendAnswers([
+        {
+          questionId: question.id,
+          correctedAnswer: areAllCorrect(),
+        },
+      ]);
+
+      const findedQuestion = await QuestionService.getQuestionsFromChapter(
+        query?.chapterId,
+        query?.type,
+        1
+      );
+
+      navigation.dispatch(
+        StackActions.replace('Question', {
+          questions: findedQuestion,
+          index: 0,
+          answers: [],
+          query,
+          type,
+        })
+      );
+    } catch (error) {
+      console.error(error);
+      setLoading(false);
+      setError('Erro ao salvar resposta, tente novamente mais tarde');
+    }
+  };
+
   return loading ? (
     <ActivityIndicator
       animating={true}
@@ -101,12 +132,18 @@ const QuestionScreen = ({ route, navigation }) => {
         <Text style={styles.title}>HORA DA PRÁTICA</Text>
         <View style={styles.containerDescription}>
           {parseInt(question.type) === 2 ? (
-            <GapQuestion partsOfDescription={question.description.split('_')}></GapQuestion>
+            <GapQuestion
+              partsOfDescription={question.description.split('_')}
+            ></GapQuestion>
           ) : (
-            <Text style={styles.questionDescription}>{question.description}</Text>
+            <Text style={styles.questionDescription}>
+              {question.description}
+            </Text>
           )}
-          </View>
-        <Text style={styles.qttText}>{`Escolha ${correctLength} ${options.length !== 1 ? 'opções' : 'opção'}:`}</Text>
+        </View>
+        <Text style={styles.qttText}>{`Escolha ${correctLength} ${
+          options.length !== 1 ? 'opções' : 'opção'
+        }:`}</Text>
 
         {options.map((option) => (
           <View style={styles.option} key={option.id}>
@@ -121,9 +158,11 @@ const QuestionScreen = ({ route, navigation }) => {
         {selecteds.length >= correctLength && (
           <Button
             containerStyles={styles.submit}
-            text={isLast ? 'Concluir' : 'Próxima'}
+            text={isLast && type !== 'random' ? 'Concluir' : 'Próxima'}
             width={250}
-            onPress={handleNextClick}
+            onPress={
+              type !== 'random' ? handleNextClick : handleNextClickRandom
+            }
           />
         )}
       </ScrollView>

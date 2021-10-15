@@ -7,8 +7,13 @@ const formatCustomDate = (date) => {
 };
 
 const stringToDate = (string) => {
-  const [year, month, day] = string.split("-")
-  return new Date(year, month - 1, day)
-}
+  const [year, month, day] = string.split('-');
+  return new Date(year, month - 1, day);
+};
 
-export { formatCustomDate, stringToDate};
+const getDifferentsValuesOfKey = (array, key) => {
+  const newArray = array.map((item) => item[key]);
+  return newArray.filter((value, index, self) => self.indexOf(value) === index);
+};
+
+export { formatCustomDate, stringToDate, getDifferentsValuesOfKey };

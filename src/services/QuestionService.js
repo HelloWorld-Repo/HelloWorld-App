@@ -1,12 +1,13 @@
 import api from './api';
 
-const getQuestionsFromChapter = (chapterId) => {
+const getQuestionsFromChapter = (chapterId, type, limit = 3) => {
+  const params = { limit };
+
+  if (!!chapterId) params.chapterId = chapterId;
+  if (!!type) params.type = type;
+
   return api
-    .get('questions', {
-      params: {
-        chapterId,
-      },
-    })
+    .get('questions', { params })
     .then((response) => {
       return response?.data?.data;
     })

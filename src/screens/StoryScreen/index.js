@@ -15,9 +15,7 @@ const StoryScreen = ({ navigation }) => {
   const [visible, setVisible] = useState(user?.askForFeedback);
 
   useEffect(() => {
-    let isRendered = false;
-
-    if (!isRendered) {
+    const loadData = () => {
       StoryService.getModulesAndChapters()
         .then((response) => {
           setModules(response);
@@ -27,9 +25,7 @@ const StoryScreen = ({ navigation }) => {
         });
     }
 
-    return () => {
-      isRendered = true;
-    };
+    loadData();
   }, []);
 
   return (
