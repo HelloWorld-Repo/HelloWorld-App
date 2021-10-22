@@ -34,6 +34,7 @@ const App = () => {
         visible={toastVisible}
         type="error"
         message="Seu acesso expirou, faça login novamente"
+        onDismiss={() => setToastVisible(false)}
       ></Toast>
     </NavigationContainer>
   );
