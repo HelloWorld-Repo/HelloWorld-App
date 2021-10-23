@@ -1,10 +1,5 @@
 import React, { useState } from 'react';
-import {
-  Text,
-  useTheme,
-  Button as PaperButton,
-  ActivityIndicator,
-} from 'react-native-paper';
+import { Text, useTheme, ActivityIndicator } from 'react-native-paper';
 import { ScrollView, View } from 'react-native';
 import { StackActions } from '@react-navigation/routers';
 
@@ -14,9 +9,11 @@ import ChapterService from '../../services/ChapterService';
 import styles from './style';
 import Option from './components/Option';
 import GapQuestion from './components/GapQuestion';
+import { useApplicationProvider } from '../../providers/ApplicationProvider';
 
 const QuestionScreen = ({ route, navigation }) => {
   const { questions, index, answers, query, type } = route.params;
+  const { increaseUserLevel } = useApplicationProvider();
 
   const [selecteds, setSelecteds] = useState([]);
   const [error, setError] = useState(null);
@@ -64,8 +61,10 @@ const QuestionScreen = ({ route, navigation }) => {
       try {
         await QuestionService.sendAnswers(answers);
         const completedChapter = majorityIsCorrect();
-        if (completedChapter)
+        if (completedChapter) {
           await ChapterService.saveChapterDone(question.chapterId);
+          await increaseUserLevel();
+        }
 
         navigation.reset({
           index: 0,

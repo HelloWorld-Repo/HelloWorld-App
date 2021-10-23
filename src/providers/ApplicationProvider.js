@@ -67,6 +67,11 @@ const ApplicationProvider = ({ children }) => {
     await AsyncStorage.setItem('@HelloWorld:user', JSON.stringify(newUser));
     setUser({ ...newUser, token: user.token });
   };
+  const increaseUserLevel = async () => {
+    const newUser = { ...user, level: (user.level || 0) + 1};
+    await AsyncStorage.setItem('@HelloWorld:user', JSON.stringify(newUser));
+    setUser(newUser);
+  };
 
   return (
     <ApplicationContext.Provider
@@ -79,6 +84,7 @@ const ApplicationProvider = ({ children }) => {
         signOut,
         setUserFeedback,
         updateUser,
+        increaseUserLevel
       }}
     >
       {children}
