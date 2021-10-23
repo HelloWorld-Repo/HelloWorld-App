@@ -1,10 +1,5 @@
 import React, { useState } from 'react';
-import {
-  BottomNavigation,
-  Text,
-  useTheme,
-  Appbar,
-} from 'react-native-paper';
+import { BottomNavigation, Text, useTheme, Appbar } from 'react-native-paper';
 import { Image, View } from 'react-native';
 
 import styles from './style';
@@ -15,14 +10,13 @@ import ProfileScreen from '../ProfileScreen';
 import SuccessModal from './components/SuccessModal';
 import DevelopingScreen from '../DevelopingScreen';
 import QuestionFilterScreen from '../QuestionFilterScreen';
+import AbstractScreen from '../AbstractScreen';
 
 const houseIcon = require('../../../assets/icons/house.png');
 const graphIcon = require('../../../assets/icons/graph.png');
 const personIcon = require('../../../assets/icons/person.png');
 const questionsIcon = require('../../../assets/icons/questions.png');
 const starIcon = require('../../../assets/icons/star.png');
-
-const AlbumsRoute = () => <Text>Albums</Text>;
 
 const TabsScreen = ({ route }) => {
   const [index, setIndex] = useState(0);
@@ -35,34 +29,33 @@ const TabsScreen = ({ route }) => {
   const [routes] = useState([
     {
       key: 'home',
-      icon: ({ tintColor }) => (
-        <Image source={houseIcon} style={[styles.houseStyle, styles.noSelected]} />
+      icon: () => (
+        <Image
+          source={houseIcon}
+          style={[styles.houseStyle, styles.noSelected]}
+        />
       ),
     },
     {
       key: 'questions',
-      icon: ({ tintColor }) => (
+      icon: () => (
         <Image source={questionsIcon} style={styles.questionsStyile} />
       ),
     },
     {
       key: 'abstract',
-      icon: ({ tintColor }) => (
-        <Image source={graphIcon} style={styles.graphStyles} />
-      ),
+      icon: () => <Image source={graphIcon} style={styles.graphStyles} />,
     },
     {
       key: 'profile',
-      icon: ({ tintColor }) => (
-        <Image source={personIcon} style={styles.personStyles} />
-      ),
+      icon: () => <Image source={personIcon} style={styles.personStyles} />,
     },
   ]);
 
   const renderScene = BottomNavigation.SceneMap({
     home: StoryScreen,
     questions: QuestionFilterScreen,
-    abstract: DevelopingScreen,
+    abstract: AbstractScreen,
     profile: ProfileScreen,
   });
 
