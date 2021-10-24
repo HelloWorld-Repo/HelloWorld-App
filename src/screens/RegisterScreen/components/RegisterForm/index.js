@@ -56,6 +56,7 @@ const RegisterForm = ({
       <DateField
         value={formatCustomDate(values.birthday)}
         onPress={() => setShowDatePicker(true)}
+        label="Data de Nascimento"
       ></DateField>
       {showDatePicker && (
         <DateTimePicker

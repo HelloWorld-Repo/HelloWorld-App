@@ -4,7 +4,7 @@ import { useTheme } from 'react-native-paper';
 import Markdown from 'react-native-simple-markdown';
 import { useNavigation } from '@react-navigation/native';
 
-import { Button, Toast } from '../../components';
+import { Button, SafeAreaAndroid, Toast } from '../../components';
 import styles from './index.style';
 import QuestionService from '../../services/QuestionService';
 
@@ -17,10 +17,16 @@ const ExplanationScreen = ({ route }) => {
 
   const markdownStyles = {
     heading1: {
-      fontSize: theme.fonts.size.title,
+      fontSize: theme.fonts.size.subtitle,
       color: theme.colors.secondary,
       fontFamily: theme.fonts.titleSolidBlack,
-      marginBottom: theme.spacing(3),
+      marginVertical: theme.spacing(3),
+    },
+    heading2: {
+      fontSize: theme.fonts.size.text,
+      color: theme.colors.secondary,
+      fontFamily: theme.fonts.titleSolidBlack,
+      marginVertical: theme.spacing(3),
     },
     link: {
       color: theme.colors.accent,
@@ -31,15 +37,21 @@ const ExplanationScreen = ({ route }) => {
     text: {
       color: theme.colors.textSecondary,
       fontFamily: theme.fonts.sampleText,
-      fontSize: theme.fonts.size.text,
+      fontSize: theme.fonts.size.small,
+    },
+    strong: {
+      fontFamily: theme.fonts.sampleText,
+      fontWeight: 'bold',
     },
   };
 
   const handleOnPress = async () => {
     try {
-      const questions = await QuestionService.getQuestionsFromChapter(chapter.id);
+      const questions = await QuestionService.getQuestionsFromChapter(
+        chapter.id
+      );
 
-      if(questions.length === 0) {
+      if (questions.length === 0) {
         setError('Ainda não foram cadastradas questões para esse capítulo');
       } else {
         navigation.push('Question', {
@@ -54,13 +66,13 @@ const ExplanationScreen = ({ route }) => {
   };
 
   return (
-    <>
-      <Toast
-        message={error}
-        visible={!!error}
-        onDismiss={() => setError(null)}
-      />
+    <SafeAreaAndroid>
       <ScrollView style={styles.container}>
+        <Toast
+          message={error}
+          visible={!!error}
+          onDismiss={() => setError(null)}
+        />
         <Markdown styles={markdownStyles}>{chapter.explanation}</Markdown>
         <Button
           text="Entendi"
@@ -69,7 +81,7 @@ const ExplanationScreen = ({ route }) => {
           onPress={handleOnPress}
         ></Button>
       </ScrollView>
-    </>
+    </SafeAreaAndroid>
   );
 };
 

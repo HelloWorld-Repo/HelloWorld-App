@@ -13,7 +13,10 @@ const styles = StyleSheet.create({
     lineHeight: 40,
   },
   container: { flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap' },
-  gapContainer: { alignItems: 'center', flexDirection: 'row' },
+  gapContainer: {
+    alignItems: 'center',
+    flexDirection: 'row'
+  },
 });
 
 export default styles;

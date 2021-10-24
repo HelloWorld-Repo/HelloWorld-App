@@ -45,17 +45,25 @@ const ApplicationProvider = ({ children }) => {
   };
 
   const signIn = async (email, password) => {
-    const response = await AuthService.login(email, password);
+    try {
+      const response = await AuthService.login(email, password);
 
-    setUser({ ...response.user, token: response.token });
+      if (response?.user) {
+        setUser({ ...response?.user, token: response?.token });
 
-    api.defaults.headers.Authorization = `Baerer ${response.token}`;
+        api.defaults.headers.Authorization = `Baerer ${response?.token}`;
 
-    await AsyncStorage.setItem(
-      '@HelloWorld:user',
-      JSON.stringify(response.user)
-    );
-    await AsyncStorage.setItem('@HelloWorld:token', response.token);
+        await AsyncStorage.setItem(
+          '@HelloWorld:user',
+          JSON.stringify(response?.user)
+        );
+        await AsyncStorage.setItem('@HelloWorld:token', response?.token);
+      } else {
+        throw new Error('E-mail ou senha não encontrados');
+      }
+    } catch (error) {
+      throw error;
+    }
   };
 
   const signOut = async () => {
@@ -68,7 +76,7 @@ const ApplicationProvider = ({ children }) => {
     setUser({ ...newUser, token: user.token });
   };
   const increaseUserLevel = async () => {
-    const newUser = { ...user, level: (user.level || 0) + 1};
+    const newUser = { ...user, level: (user.level || 0) + 1 };
     await AsyncStorage.setItem('@HelloWorld:user', JSON.stringify(newUser));
     setUser(newUser);
   };
@@ -84,7 +92,7 @@ const ApplicationProvider = ({ children }) => {
         signOut,
         setUserFeedback,
         updateUser,
-        increaseUserLevel
+        increaseUserLevel,
       }}
     >
       {children}
