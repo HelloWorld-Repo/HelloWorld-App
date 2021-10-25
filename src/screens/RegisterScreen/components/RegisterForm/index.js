@@ -62,7 +62,6 @@ const RegisterForm = ({
         <DateTimePicker
           value={values.birthday}
           mode="date"
-          display="calendar"
           maximumDate={new Date()}
           onChange={(event, date) => onChangeHandler(date)}
         />
@@ -87,7 +86,6 @@ const RegisterForm = ({
         color={theme.colors.accent}
         label="É o meu primeiro contato com programação"
       />
-
 
       <TextInput
         label="Senha"

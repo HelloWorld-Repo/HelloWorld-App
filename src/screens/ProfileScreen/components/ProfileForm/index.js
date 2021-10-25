@@ -53,7 +53,6 @@ const ProfileForm = ({
         <DateTimePicker
           value={values.birthday}
           mode="date"
-          display="calendar"
           maximumDate={new Date()}
           onChange={(event, date) => onChangeHandler(date)}
         />
