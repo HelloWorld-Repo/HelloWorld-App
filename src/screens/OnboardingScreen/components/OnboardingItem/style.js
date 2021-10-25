@@ -1,7 +1,6 @@
 import { StyleSheet } from 'react-native';
 import theme from '../../../../styles/theme';
 
-
 const styles = StyleSheet.create({
   pagerView: {
     flex: 1,
@@ -25,7 +24,13 @@ const styles = StyleSheet.create({
     color: theme.colors.secondary,
     fontSize: theme.fonts.size.subtitle,
     textAlign: 'center',
-  }
+  },
+  image: { 
+    flex: 1, 
+    width: '100%', 
+    height: null, 
+    resizeMode: 'contain' 
+  },
 });
 
 export default styles;

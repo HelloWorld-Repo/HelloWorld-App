@@ -10,6 +10,7 @@ const OnboardingScreen = () => {
       renderItem={({item}) => <OnboardingItem item={item}/>}
       data={screens}
       onDone={() => {}}
+      doneLabel=""
       activeDotStyle={{ backgroundColor: theme.colors.accent }}
     ></Onboarding>
   );
