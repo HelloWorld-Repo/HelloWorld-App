@@ -33,7 +33,7 @@ const StoryScreen = ({ navigation }) => {
       <SafeAreaAndroid>
         <ScrollView>
           <Text style={styles.title}>Sua História</Text>
-          {modules.map((module) => (
+          {modules?.map((module) => (
             <ModuleItem
               key={module.id}
               module={module}

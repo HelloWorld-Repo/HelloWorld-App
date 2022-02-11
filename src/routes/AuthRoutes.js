@@ -6,6 +6,7 @@ import HomeScreen from '../screens/HomeScreen';
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 import { TitleText } from '../components';
+import ResetPasswordScreen from '../screens/ResetPasswordScreen';
 
 const AuthRoutes = () => {
   const Stack = createStackNavigator();
@@ -38,6 +39,15 @@ const AuthRoutes = () => {
       <Stack.Screen
         name="Login"
         component={LoginScreen}
+        options={{
+          headerShown: true,
+          headerTitle: TitleText,
+          headerTitleAlign: 'center',
+        }}
+      />
+      <Stack.Screen
+        name="Reset"
+        component={ResetPasswordScreen}
         options={{
           headerShown: true,
           headerTitle: TitleText,

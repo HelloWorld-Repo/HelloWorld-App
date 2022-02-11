@@ -1,9 +1,9 @@
 import api from './api';
 
-const registerUser = async ({ confirmPassword, ...data }) => {
+const registerUser = async ({ confirmPassword, ...user }) => {
   return api
     .post('register', {
-      ...data,
+      ...user,
       isAdmin: false,
     })
     .then((response) => {
@@ -14,10 +14,10 @@ const registerUser = async ({ confirmPassword, ...data }) => {
     });
 };
 
-const updateUser = async(data) => {
+const updateUser = async (user) => {
   return api
     .patch('user', {
-      ...data,
+      ...user,
     })
     .then((response) => {
       return response?.data?.data;
@@ -25,9 +25,9 @@ const updateUser = async(data) => {
     .catch((error) => {
       throw error?.response?.data;
     });
-}
+};
 
-const deleteUser = async() => {
+const deleteUser = async () => {
   return api
     .delete('user')
     .then((response) => {
@@ -36,10 +36,22 @@ const deleteUser = async() => {
     .catch((error) => {
       throw error?.response?.data;
     });
-}
+};
+
+const resetPassword = async (email) => {
+  return api
+    .post('reset', { email })
+    .then((response) => {
+      return response?.data;
+    })
+    .catch((error) => {
+      throw error?.response?.data;
+    });
+};
 
 export default {
   registerUser,
   updateUser,
-  deleteUser
+  deleteUser,
+  resetPassword,
 };

@@ -72,7 +72,7 @@ const AbstractScreen = () => {
       {loading && (
         <ActivityIndicator animating={true} color={theme.colors.primary} />
       )}
-      {modules.map((module) => (
+      {modules?.map((module) => (
         <ModuleItem module={module} key={module.id} />
       ))}
       <Toast

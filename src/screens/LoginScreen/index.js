@@ -4,17 +4,15 @@ import { Formik } from 'formik';
 import { ActivityIndicator, Paragraph, useTheme } from 'react-native-paper';
 import * as Yup from 'yup';
 
-import { SafeAreaAndroid, Toast } from '../../components';
+import { Button, SafeAreaAndroid, Toast } from '../../components';
 import styles from './index.style';
 import LoginForm from './components/LoginForm';
 import AuthService from '../../services/AuthService';
 import { useApplicationProvider } from '../../providers/ApplicationProvider';
+import { Link } from '@react-navigation/native';
 
 const LoginSchema = Yup.object().shape({
-  password: Yup.string()
-    .min(8, 'Sua senha tem 8 ou mais caracteres')
-    .max(20, 'Sua senha tem, no máximo, 20 caracteres')
-    .required('Preencha a senha'),
+  password: Yup.string().required('Preencha a senha'),
   email: Yup.string().email('E-mail inválido').required('Preencha o e-mail'),
 });
 
@@ -25,12 +23,12 @@ const LoginScreen = ({ navigation }) => {
 
   const theme = useTheme();
 
-  const onSubmitLogin = async({ email, password }) => {
+  const onSubmitLogin = async ({ email, password }) => {
     try {
       setLoading(true);
       await signIn(email, password);
     } catch (error) {
-      console.error(error)
+      console.error(error);
       setError(error?.message || 'Ops, aconteceu um erro, tente novamente');
     } finally {
       setLoading(false);
@@ -80,6 +78,11 @@ const LoginScreen = ({ navigation }) => {
               />
             )}
           </Formik>
+          <Button
+            onPress={() => navigation.push('Reset')}
+            text="Esqueci minha senha"
+            full
+          />
         </View>
       </SafeAreaAndroid>
     </>

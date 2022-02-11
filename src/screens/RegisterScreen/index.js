@@ -36,7 +36,7 @@ const RegisterSchema = Yup.object().shape({
     .required('Você esqueceu de preencher a senha'),
   confirmPassword: Yup.string()
     .required('Você esqueceu de preencher a confirmação da senha')
-    .oneOf([Yup.ref('password'), null], 'A senhas etão diferentes')
+    .oneOf([Yup.ref('password'), null], 'A senhas estão diferentes')
 });
 
 const RegisterScreen = ({ navigation }) => {
@@ -53,8 +53,6 @@ const RegisterScreen = ({ navigation }) => {
       await UserService.registerUser(userData);
       await signIn(userData.email, userData.password);
     
-      //TODO: Enviar e-mail de confirmação para o usuário
-
       setLoading(false);
       navigation.reset({
         index: 0,
