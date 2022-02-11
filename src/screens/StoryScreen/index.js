@@ -20,10 +20,10 @@ const StoryScreen = ({ navigation }) => {
         .then((response) => {
           setModules(response);
         })
-        .catch(() => {
+        .catch((error) => {
           console.error(error);
         });
-    }
+    };
 
     loadData();
   }, []);

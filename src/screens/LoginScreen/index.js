@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
 import { Formik } from 'formik';
-import { ActivityIndicator, Paragraph, useTheme } from 'react-native-paper';
+import {
+  ActivityIndicator,
+  Button,
+  Paragraph,
+  useTheme,
+} from 'react-native-paper';
 import * as Yup from 'yup';
 
-import { Button, SafeAreaAndroid, Toast } from '../../components';
+import { SafeAreaAndroid, Toast } from '../../components';
 import styles from './index.style';
 import LoginForm from './components/LoginForm';
 import AuthService from '../../services/AuthService';
@@ -75,14 +80,10 @@ const LoginScreen = ({ navigation }) => {
                 values={values}
                 errors={errors}
                 touched={touched}
+                navigation={navigation}
               />
             )}
           </Formik>
-          <Button
-            onPress={() => navigation.push('Reset')}
-            text="Esqueci minha senha"
-            full
-          />
         </View>
       </SafeAreaAndroid>
     </>

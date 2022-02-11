@@ -75,10 +75,15 @@ const ApplicationProvider = ({ children }) => {
     await AsyncStorage.setItem('@HelloWorld:user', JSON.stringify(newUser));
     setUser({ ...newUser, token: user.token });
   };
+
   const increaseUserLevel = async () => {
     const newUser = { ...user, level: (user.level || 0) + 1 };
     await AsyncStorage.setItem('@HelloWorld:user', JSON.stringify(newUser));
     setUser(newUser);
+  };
+
+  const resetPasswordSuccess = async () => {
+    await updateUser({ ...user, resetPassword: false });
   };
 
   return (
@@ -93,6 +98,7 @@ const ApplicationProvider = ({ children }) => {
         setUserFeedback,
         updateUser,
         increaseUserLevel,
+        resetPasswordSuccess,
       }}
     >
       {children}

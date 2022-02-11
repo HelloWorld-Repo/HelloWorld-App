@@ -1,10 +1,10 @@
-import React from "react";
-import { TextInput, HelperText } from "react-native-paper";
-import PropTypes from "prop-types";
-import _ from "underscore";
+import React from 'react';
+import { TextInput, HelperText, Button as ButtonPaper } from 'react-native-paper';
+import PropTypes from 'prop-types';
+import _ from 'underscore';
 
-import { Button } from "../../../../components";
-import styles from "./index.style";
+import { Button } from '../../../../components';
+import styles from './index.style';
 
 const LoginForm = ({
   handleChange,
@@ -13,12 +13,13 @@ const LoginForm = ({
   values,
   errors,
   touched,
+  navigation
 }) => (
   <>
     <TextInput
       label="E-mail"
-      onChangeText={handleChange("email")}
-      onBlur={handleBlur("email")}
+      onChangeText={handleChange('email')}
+      onBlur={handleBlur('email')}
       value={values.email}
       type="flat"
       style={styles.input}
@@ -29,8 +30,8 @@ const LoginForm = ({
 
     <TextInput
       label="Senha"
-      onChangeText={handleChange("password")}
-      onBlur={handleBlur("password")}
+      onChangeText={handleChange('password')}
+      onBlur={handleBlur('password')}
       value={values.password}
       type="flat"
       secureTextEntry
@@ -42,7 +43,9 @@ const LoginForm = ({
     >
       {errors.password}
     </HelperText>
-
+    <ButtonPaper onPress={() => navigation.push('Reset')} type="text">
+      Esqueci minha senha
+    </ButtonPaper>
     <Button
       containerStyles={styles.containerButton}
       full

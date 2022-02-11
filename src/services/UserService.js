@@ -42,7 +42,18 @@ const resetPassword = async (email) => {
   return api
     .post('reset', { email })
     .then((response) => {
-      return response?.data;
+      return response?.data?.data;
+    })
+    .catch((error) => {
+      throw error?.response?.data;
+    });
+};
+
+const newPassword = async (password) => {
+  return api
+    .post('password', { password })
+    .then((response) => {
+      return response?.data?.data;
     })
     .catch((error) => {
       throw error?.response?.data;
@@ -54,4 +65,5 @@ export default {
   updateUser,
   deleteUser,
   resetPassword,
+  newPassword
 };
