@@ -2,7 +2,7 @@ name: Create Release
 on:
   push:
     tags:
-      - "prod-[0-9]+.[0-9]+.[0-9]+" # Push events to matching prod-*, i.e.prod-20.15.10
+      - 'prod-[0-9]+.[0-9]+.[0-9]+' # Push events to matching prod-*, i.e.prod-20.15.10
 
 jobs:
   deploy_prod:
@@ -46,6 +46,9 @@ jobs:
         run: |
           echo Build number is $GITHUB_RUN_NUMBER
           echo Latest release is ${{ steps.latestBinaryVersion.outputs.version }}
+
+      - name: Expo CLI Install
+        run: npm install expo-updates
       - name: Expo Publish Channel
         run: expo publish --non-interactive --release-channel=${{ steps.releaseChannel.outputs.releaseChannel }}
 
