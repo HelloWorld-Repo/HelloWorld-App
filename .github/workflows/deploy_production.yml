@@ -1,4 +1,4 @@
-name: Create Release
+name: Create Prod Release
 on:
   push:
     tags:
@@ -76,6 +76,7 @@ jobs:
           allowUpdates: true
 
   build_android:
+    name: Build app and generate APK
     needs: [deploy_prod, create_release]
     runs-on: ubuntu-latest
     steps:
@@ -89,6 +90,8 @@ jobs:
           expo-cache: true
       - name: Install Packages
         run: npm install
+      - name: Install Expo CLI
+        run: npm install expo-updates
       - name: Build Android Release
         env:
           APP_BUILD_VERSION: ${{ github.run_number }}
