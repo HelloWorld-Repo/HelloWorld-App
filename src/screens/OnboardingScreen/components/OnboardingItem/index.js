@@ -4,6 +4,7 @@ import { Image, View } from 'react-native';
 import { Text } from 'react-native-paper';
 
 import { Button } from '../../../../components';
+import theme from '../../../../styles/theme';
 import styles from './style';
 
 const OnboardingItem = ({ item }) => {
@@ -16,15 +17,13 @@ const OnboardingItem = ({ item }) => {
           <Text style={styles.logoText}>{'<HelloWorld/>'}</Text>
         </View>
       )}
+      <Image source={item.image} style={styles.image}></Image>
       <Text style={styles.firstText}>{item.subtitle}</Text>
-      <Image
-        source={item.image}
-        style={styles.image}
-      ></Image>
       {item.endButton && (
         <Button
           text="Vamos!"
           full
+          containerStyles={{ marginBottom: theme.spacing(10) }}
           onPress={() =>
             navigation.reset({
               index: 0,

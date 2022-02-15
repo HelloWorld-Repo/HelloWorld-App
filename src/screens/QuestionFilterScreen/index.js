@@ -42,6 +42,10 @@ const QuestionFilterScreen = () => {
   };
 
   useEffect(() => {
+    navigation.push('Onboarding');
+  }, []);
+
+  useEffect(() => {
     if (!!moduleSelected) {
       const chaptersTemp = [];
 
@@ -108,7 +112,7 @@ const QuestionFilterScreen = () => {
 
             <PickerSelect
               onValueChange={(value) => setModuleSelected(value)}
-              items={data.modules}
+              items={data?.modules || []}
               value={moduleSelected}
               placeholder={{ label: 'MÓDULOS', ...styles.placeholder }}
               useNativeAndroidPickerStyle={false}
@@ -119,7 +123,7 @@ const QuestionFilterScreen = () => {
             />
             <PickerSelect
               onValueChange={(value) => setChapterSelected(value)}
-              items={data.chapters}
+              items={data?.chapters || []}
               value={chapterSelected}
               placeholder={{ label: 'CAPÍTULOS', ...styles.placeholder }}
               useNativeAndroidPickerStyle={false}
