@@ -40,11 +40,7 @@ const QuestionFilterScreen = () => {
 
     setData({ chapters: chaptersData, modules: modulesData });
   };
-
-  useEffect(() => {
-    navigation.push('Onboarding');
-  }, []);
-
+  
   useEffect(() => {
     if (!!moduleSelected) {
       const chaptersTemp = [];
