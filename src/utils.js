@@ -1,10 +1,7 @@
-const formatCustomDate = (date) => {
-  return `
-    ${date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()}/${
-    date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1
-  }/${date.getFullYear()}
-  `;
-};
+import moment from 'moment';
+
+const formatCustomBrDate = (date) => moment(date).format('DD/MM/YYYY');
+const formatCustomEnDate = (date) => moment(date).format('YYYY-MM-DD');
 
 const stringToDate = (string) => {
   const [year, month, day] = string.split('-');
@@ -16,4 +13,9 @@ const getDifferentsValuesOfKey = (array, key) => {
   return newArray.filter((value, index, self) => self.indexOf(value) === index);
 };
 
-export { formatCustomDate, stringToDate, getDifferentsValuesOfKey };
+export {
+  formatCustomBrDate,
+  stringToDate,
+  getDifferentsValuesOfKey,
+  formatCustomEnDate,
+};

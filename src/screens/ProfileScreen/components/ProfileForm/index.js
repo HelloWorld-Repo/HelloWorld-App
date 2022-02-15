@@ -4,7 +4,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import moment from 'moment';
 
 import { DateField } from '../../../../components';
-import { formatCustomDate } from '../../../../utils';
+import { formatCustomBrDate } from '../../../../utils';
 import styles from './style';
 
 const ProfileForm = ({
@@ -20,7 +20,7 @@ const ProfileForm = ({
 
   const onChangeHandler = (date) => {
     setShowDatePicker(false);
-    setFieldValue('birthday', moment(date).toDate());
+    setFieldValue('birthday', date);
     setFieldTouched('birthday', true);
   };
   return (
@@ -44,7 +44,7 @@ const ProfileForm = ({
         {errors.name}
       </HelperText>
       <DateField
-        value={formatCustomDate(values.birthday)}
+        value={formatCustomBrDate(new Date(values.birthday))}
         onPress={() => setShowDatePicker(true)}
         mode="outlined"
         label="Data de Nascimento"

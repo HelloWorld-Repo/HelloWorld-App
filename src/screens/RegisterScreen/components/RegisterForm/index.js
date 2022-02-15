@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import { TextInput, HelperText, Switch, useTheme } from 'react-native-paper';
 import PropTypes from 'prop-types';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import moment from 'moment';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 import { Button, DateField, SwitchGroup } from '../../../../components';
-import { formatCustomDate } from '../../../../utils';
+import { formatCustomBrDate, formatCustomEnDate } from '../../../../utils';
 import styles from './index.style';
 
 const RegisterForm = ({ onSubmit }) => {
@@ -43,12 +42,13 @@ const RegisterForm = ({ onSubmit }) => {
         .required('Você esqueceu de preencher a confirmação da senha')
         .oneOf([Yup.ref('password'), null], 'A senhas estão diferentes'),
     }),
-    onSubmit: onSubmit,
+    onSubmit: (values) =>
+      onSubmit({ ...values, birthday: formatCustomEnDate(values.birthday) }),
   });
 
   const onChangeHandler = (date) => {
     setShowDatePicker(false);
-    formik.setFieldValue('birthday', moment(date).toDate());
+    formik.setFieldValue('birthday', date);
   };
 
   return (
@@ -84,16 +84,18 @@ const RegisterForm = ({ onSubmit }) => {
       </HelperText>
 
       <DateField
-        value={formatCustomDate(formik.values.birthday)}
+        value={formatCustomBrDate(new Date(formik.values.birthday))}
         onPress={() => setShowDatePicker(true)}
         label="Data de Nascimento"
       ></DateField>
       {showDatePicker && (
         <DateTimePicker
-          value={formik.values.birthday}
+          value={new Date(formik.values.birthday)}
           mode="date"
           maximumDate={new Date()}
-          onChange={(event, date) => onChangeHandler(date)}
+          onChange={(_, date) => {
+            onChangeHandler(date);
+          }}
         />
       )}
 
