@@ -63,7 +63,7 @@ const QuestionFilterScreen = () => {
         setSelectValues(modules);
       } catch (error) {
         console.error(error);
-        setError(error.message || 'Ops, aconteceu um erro, tente novamente');
+        setError(error?.message || 'Ops, aconteceu um erro, tente novamente');
       } finally {
         setLoading(false);
       }

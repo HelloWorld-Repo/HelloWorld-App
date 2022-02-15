@@ -131,7 +131,9 @@ const RegisterForm = ({ onSubmit }) => {
       />
       <HelperText
         type="error"
-        visible={!!formik.errors?.confirmPassword && !!formik.touched?.confirmPassword}
+        visible={
+          !!formik.errors?.confirmPassword && !!formik.touched?.confirmPassword
+        }
       >
         {formik.errors.confirmPassword}
       </HelperText>

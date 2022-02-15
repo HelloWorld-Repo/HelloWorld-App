@@ -1,18 +1,11 @@
 import api from './api';
 
-const saveChapterDone = (chapterId) => {
-  return api
-    .post('history', {
-      chapterId,
-    })
-    .then((response) => {
-      return response?.data?.data;
-    })
-    .catch((error) => {
-      throw error?.response?.data;
-    });
+const saveChapterDone = async (chapterId) => {
+  return await api.post('history', {
+    chapterId,
+  });
 };
 
 export default {
-  saveChapterDone
-}
+  saveChapterDone,
+};

@@ -1,63 +1,28 @@
 import api from './api';
 
-const registerUser = async ({ confirmPassword, ...user }) => {
-  return api
-    .post('register', {
-      ...user,
-      isAdmin: false,
-    })
-    .then((response) => {
-      return response?.data?.data;
-    })
-    .catch((error) => {
-      throw error?.response?.data;
-    });
+const registerUser = async (user) => {
+  return await api.post('register', {
+    ...user,
+    isAdmin: false,
+  });
 };
 
 const updateUser = async (user) => {
-  return api
-    .patch('user', {
-      ...user,
-    })
-    .then((response) => {
-      return response?.data?.data;
-    })
-    .catch((error) => {
-      throw error?.response?.data;
-    });
+  return await api.patch('user', {
+    ...user,
+  });
 };
 
 const deleteUser = async () => {
-  return api
-    .delete('user')
-    .then((response) => {
-      return response?.data?.data;
-    })
-    .catch((error) => {
-      throw error?.response?.data;
-    });
+  return await api.delete('user');
 };
 
 const resetPassword = async (email) => {
-  return api
-    .post('reset', { email })
-    .then((response) => {
-      return response?.data?.data;
-    })
-    .catch((error) => {
-      throw error?.response?.data;
-    });
+  return await api.post('reset', { email });
 };
 
 const newPassword = async (password) => {
-  return api
-    .post('password', { password })
-    .then((response) => {
-      return response?.data?.data;
-    })
-    .catch((error) => {
-      throw error?.response?.data;
-    });
+  return await api.post('password', { password });
 };
 
 export default {
@@ -65,5 +30,5 @@ export default {
   updateUser,
   deleteUser,
   resetPassword,
-  newPassword
+  newPassword,
 };
