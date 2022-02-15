@@ -16,12 +16,14 @@ const App = () => {
   useEffect(() => {
     api.interceptors.response.use(
       function (response) {
-        return response;
+        return response?.data?.data;
       },
       function (error) {
-        if (error.response.status === 401) {
+        if (error?.response?.status === 401) {
           setToastVisible(true);
           signOut();
+        } else {
+          return Promise.reject(error?.response?.data);
         }
       }
     );

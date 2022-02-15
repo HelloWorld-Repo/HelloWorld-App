@@ -1,19 +1,12 @@
 import api from './api';
 
-const getQuestionsFromChapter = (chapterId, type, limit = 3) => {
+const getQuestionsFromChapter = async(chapterId, type, limit = 3) => {
   const params = { limit };
 
   if (!!chapterId) params.chapterId = chapterId;
   if (!!type) params.type = type;
 
-  return api
-    .get('questions', { params })
-    .then((response) => {
-      return response?.data?.data;
-    })
-    .catch((error) => {
-      throw error?.response?.data;
-    });
+  return await api.get('questions', { params });
 };
 
 const sendAnswers = async (answers) => {
@@ -28,11 +21,7 @@ const sendAnswers = async (answers) => {
     );
   });
 
-  await Promise.all(promises)
-    .then((response) => response?.data?.data)
-    .catch((error) => {
-      throw error?.response?.data;
-    });
+  await Promise.all(promises);
 };
 
 export default {

@@ -40,7 +40,7 @@ const QuestionFilterScreen = () => {
 
     setData({ chapters: chaptersData, modules: modulesData });
   };
-
+  
   useEffect(() => {
     if (!!moduleSelected) {
       const chaptersTemp = [];
@@ -63,7 +63,7 @@ const QuestionFilterScreen = () => {
         setSelectValues(modules);
       } catch (error) {
         console.error(error);
-        setError(error.message || 'Ops, aconteceu um erro, tente novamente');
+        setError(error?.message || 'Ops, aconteceu um erro, tente novamente');
       } finally {
         setLoading(false);
       }
@@ -108,7 +108,7 @@ const QuestionFilterScreen = () => {
 
             <PickerSelect
               onValueChange={(value) => setModuleSelected(value)}
-              items={data.modules}
+              items={data?.modules || []}
               value={moduleSelected}
               placeholder={{ label: 'MÓDULOS', ...styles.placeholder }}
               useNativeAndroidPickerStyle={false}
@@ -119,7 +119,7 @@ const QuestionFilterScreen = () => {
             />
             <PickerSelect
               onValueChange={(value) => setChapterSelected(value)}
-              items={data.chapters}
+              items={data?.chapters || []}
               value={chapterSelected}
               placeholder={{ label: 'CAPÍTULOS', ...styles.placeholder }}
               useNativeAndroidPickerStyle={false}

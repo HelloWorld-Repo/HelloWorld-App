@@ -22,6 +22,8 @@ jobs:
           expo-cache: true
       - name: Install Packages
         run: npm install
+      - name: Expo CLI Install
+        run: npm install expo-updates
       - name: Expo Publish Channel
         run: expo publish --non-interactive --release-channel staging
       - name: Add Comment To PR

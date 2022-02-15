@@ -49,12 +49,8 @@ const ProfileScreen = () => {
     try {
       setLoading(true);
       await UserService.deleteUser();
-      setLoading(false);
-
-      await signOut;
-
+      await signOut();
       setDeleteUserConfirmation(false);
-
       setToast({
         message: 'Usuário removido com sucesso',
         visible: true,
@@ -66,6 +62,7 @@ const ProfileScreen = () => {
         visible: true,
         type: 'error',
       });
+    } finally {
       setLoading(false);
     }
   };

@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     fontFamily: theme.fonts.sampleText,
     margin: 0,
     padding: 0,
-    marginLeft: -20
+    marginLeft: theme.spacing(1)
   }
 });
 

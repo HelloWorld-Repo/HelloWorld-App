@@ -34,7 +34,7 @@ const ApplicationProvider = ({ children }) => {
         api.defaults.headers.Authorization = `Baerer ${storagedToken}`;
       }
     } catch (error) {
-      console.error(error);
+      console.error(error?.message);
     }
   };
 

@@ -12,7 +12,7 @@ const OnboardingScreen = () => {
       onDone={() => {}}
       doneLabel=""
       activeDotStyle={{ backgroundColor: theme.colors.accent }}
-    ></Onboarding>
+    />
   );
 };
 

@@ -1,28 +1,14 @@
 import api from './api';
 
 const getModulesAndChapters = async () => {
-  return api
-    .get('modules')
-    .then((response) => {
-      return response?.data?.data;
-    })
-    .catch((error) => {
-      throw error?.response?.data;
-    });
+  return await api.get('modules');
 };
 
 const getChapters = async () => {
-  return api
-    .get('chapters')
-    .then((response) => {
-      return response?.data?.data;
-    })
-    .catch((error) => {
-      throw error?.response?.data;
-    });
+  return await api.get('chapters');
 };
 
 export default {
   getModulesAndChapters,
-  getChapters
+  getChapters,
 };

@@ -1,17 +1,10 @@
 import api from './api';
 
 const sendFeedback = async (liked, text) => {
-  return api
-    .post('feedback', {
-      liked,
-      text,
-    })
-    .then((response) => {
-      return response?.data?.data;
-    })
-    .catch((error) => {
-      throw error?.response?.data;
-    });
+  return await api.post('feedback', {
+    liked,
+    text,
+  });
 };
 
 export default {
