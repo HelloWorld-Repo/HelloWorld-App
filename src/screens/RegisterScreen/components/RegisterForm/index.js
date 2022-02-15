@@ -2,65 +2,95 @@ import React, { useState } from 'react';
 import { TextInput, HelperText, Switch, useTheme } from 'react-native-paper';
 import PropTypes from 'prop-types';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import _ from 'underscore';
 import moment from 'moment';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 import { Button, DateField, SwitchGroup } from '../../../../components';
 import { formatCustomDate } from '../../../../utils';
 import styles from './index.style';
 
-const RegisterForm = ({
-  handleChange,
-  handleBlur,
-  handleSubmit,
-  values,
-  errors,
-  touched,
-  setFieldValue,
-}) => {
+const RegisterForm = ({ onSubmit }) => {
   const [showDatePicker, setShowDatePicker] = useState(false);
 
   const theme = useTheme();
 
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      birthday: new Date(),
+      email: '',
+      researchParticipant: true,
+      isFirstContact: false,
+      password: '',
+      confirmPassword: '',
+    },
+    validationSchema: Yup.object().shape({
+      name: Yup.string().required('Você esqueceu de preencher seu nome'),
+      birthday: Yup.date().required(
+        'Você esqueceu de preencher sua data de nascimento'
+      ),
+      email: Yup.string()
+        .email('E-mail inválido')
+        .required('Você esqueceu de preencher o e-mail'),
+      isFirstContact: Yup.bool().required(),
+      researchParticipant: Yup.bool().required(),
+      password: Yup.string()
+        .min(8, 'Escolha uma senha de no mínimo 8 caracteres')
+        .max(20, 'Escolha uma senha de no máximo 20 caracteres')
+        .required('Você esqueceu de preencher a senha'),
+      confirmPassword: Yup.string()
+        .required('Você esqueceu de preencher a confirmação da senha')
+        .oneOf([Yup.ref('password'), null], 'A senhas estão diferentes'),
+    }),
+    onSubmit: onSubmit,
+  });
+
   const onChangeHandler = (date) => {
     setShowDatePicker(false);
-    setFieldValue('birthday', moment(date).toDate());
+    formik.setFieldValue('birthday', moment(date).toDate());
   };
 
   return (
     <>
       <TextInput
         label="Nome Completo"
-        onChangeText={handleChange('name')}
-        onBlur={handleBlur('name')}
-        value={values.name}
+        onChangeText={formik.handleChange('name')}
+        onBlur={formik.handleBlur('name')}
+        value={formik.values.name}
         type="flat"
         style={styles.input}
       />
-      <HelperText type="error" visible={!!errors?.name && !!touched?.name}>
-        {errors.name}
+      <HelperText
+        type="error"
+        visible={!!formik.errors?.name && !!formik.touched?.name}
+      >
+        {formik.errors.name}
       </HelperText>
 
       <TextInput
         label="E-mail"
-        onChangeText={handleChange('email')}
-        onBlur={handleBlur('email')}
-        value={values.email}
+        onChangeText={formik.handleChange('email')}
+        onBlur={formik.handleBlur('email')}
+        value={formik.values.email}
         type="flat"
         style={styles.input}
       />
-      <HelperText type="error" visible={!!errors?.email && !!touched?.email}>
-        {errors.email}
+      <HelperText
+        type="error"
+        visible={!!formik.errors?.email && !!formik.touched?.email}
+      >
+        {formik.errors.email}
       </HelperText>
 
       <DateField
-        value={formatCustomDate(values.birthday)}
+        value={formatCustomDate(formik.values.birthday)}
         onPress={() => setShowDatePicker(true)}
         label="Data de Nascimento"
       ></DateField>
       {showDatePicker && (
         <DateTimePicker
-          value={values.birthday}
+          value={formik.values.birthday}
           mode="date"
           maximumDate={new Date()}
           onChange={(event, date) => onChangeHandler(date)}
@@ -69,74 +99,72 @@ const RegisterForm = ({
 
       <HelperText
         type="error"
-        visible={!!errors?.birthday && !!touched?.birthday}
+        visible={!!formik.errors?.birthday && !!formik.touched?.birthday}
       >
-        {errors.birthday}
+        {formik.errors.birthday}
       </HelperText>
-
-      <SwitchGroup
-        value={values.isStudent}
-        onValueChange={(value) => setFieldValue('isStudent', value)}
-        color={theme.colors.accent}
-        label="Eu já estudo programação em um curso ou faculdade"
-      />
-      <SwitchGroup
-        value={values.isFirstContact}
-        onValueChange={(value) => setFieldValue('isFirstContact', value)}
-        color={theme.colors.accent}
-        label="É o meu primeiro contato com programação"
-      />
 
       <TextInput
         label="Senha"
-        onChangeText={handleChange('password')}
-        onBlur={handleBlur('password')}
-        value={values.password}
+        onChangeText={formik.handleChange('password')}
+        onBlur={formik.handleBlur('password')}
+        value={formik.values.password}
         type="flat"
         secureTextEntry
         style={styles.input}
       />
       <HelperText
         type="error"
-        visible={!!errors?.password && !!touched?.password}
+        visible={!!formik.errors?.password && !!formik.touched?.password}
       >
-        {errors.password}
+        {formik.errors.password}
       </HelperText>
 
       <TextInput
         label="Confirmação de Senha"
-        onChangeText={handleChange('confirmPassword')}
-        onBlur={handleBlur('confirmPassword')}
-        value={values.confirmPassword}
+        onChangeText={formik.handleChange('confirmPassword')}
+        onBlur={formik.handleBlur('confirmPassword')}
+        value={formik.values.confirmPassword}
         type="flat"
         secureTextEntry
         style={styles.input}
       />
       <HelperText
         type="error"
-        visible={!!errors?.confirmPassword && !!touched?.confirmPassword}
+        visible={!!formik.errors?.confirmPassword && !!formik.touched?.confirmPassword}
       >
-        {errors.confirmPassword}
+        {formik.errors.confirmPassword}
       </HelperText>
+
+      <SwitchGroup
+        value={formik.values.isFirstContact}
+        onValueChange={(value) => formik.setFieldValue('isFirstContact', value)}
+        color={theme.colors.accent}
+        label="É o meu primeiro contato com programação"
+      />
+
+      <SwitchGroup
+        value={formik.values.researchParticipant}
+        onValueChange={(value) =>
+          formik.setFieldValue('researchParticipant', value)
+        }
+        color={theme.colors.accent}
+        label="Desejo ajudar em pesquisas, fornecendo meus dados para serem analisados anonimamente"
+      />
 
       <Button
         containerStyles={styles.containerButton}
         full
         text="Continuar"
-        onPress={handleSubmit}
-        disabled={_.size(errors) > 0 || _.size(touched) == 0}
+        onPress={formik.handleSubmit}
+        disabled={!formik.isValid || !formik.dirty}
       />
     </>
   );
 };
 
 RegisterForm.propTypes = {
-  handleChange: PropTypes.func.isRequired,
-  handleBlur: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
-  values: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
-  touched: PropTypes.object.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default RegisterForm;
