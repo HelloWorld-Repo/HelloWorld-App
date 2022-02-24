@@ -117,7 +117,7 @@ const FeedbackModal = ({ visible = false, onDismiss = () => {} }) => {
       </Portal>
       <Portal>
         <Toast
-          message="Obrigada pela sua colaboração!"
+          message="Obrigado pela sua colaboração!"
           visible={!!successToast}
           onDismiss={() => setError(null)}
           toastStyle={styles.successToast}

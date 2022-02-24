@@ -7,6 +7,7 @@ import TabsScreen from '../screens/TabsScreen';
 import ExplanationScreen from '../screens/ExplanationScreen';
 import NewPasswordScreen from '../screens/NewPasswordScreen';
 import QuestionScreen from '../screens/QuestionScreen';
+import CompleteRegisterScreen from '../screens/CompleteRegisterScreen';
 import { TitleText } from '../components';
 import { useApplicationProvider } from '../providers/ApplicationProvider';
 
@@ -23,16 +24,35 @@ const AppRoutes = () => {
     headerTintColor: theme.colors.textPrimary,
   };
 
-  if (user?.resetPassword) {
+  if (!!user?.resetPassword) {
+    if (!!user?.birthday) {
+      return (
+        <Stack.Navigator
+          initialRouteName="NewPassword"
+          screenOptions={screenOptions}
+          headerMode="screen"
+        >
+          <Stack.Screen
+            name="NewPassword"
+            component={NewPasswordScreen}
+            options={{
+              headerShown: true,
+              headerTitle: TitleText,
+              headerTitleAlign: 'center',
+            }}
+          />
+        </Stack.Navigator>
+      );
+    }
     return (
       <Stack.Navigator
-        initialRouteName="NewPassword"
+        initialRouteName="CompleteRegisterScreen"
         screenOptions={screenOptions}
         headerMode="screen"
       >
         <Stack.Screen
-          name="NewPassword"
-          component={NewPasswordScreen}
+          name="CompleteRegisterScreen"
+          component={CompleteRegisterScreen}
           options={{
             headerShown: true,
             headerTitle: TitleText,

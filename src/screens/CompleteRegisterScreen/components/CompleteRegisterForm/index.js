@@ -8,17 +8,19 @@ import * as Yup from 'yup';
 import { Button, DateField, SwitchGroup } from '../../../../components';
 import { formatCustomBrDate, formatCustomEnDate } from '../../../../utils';
 import styles from './index.style';
+import { useApplicationProvider } from '../../../../providers/ApplicationProvider';
 
-const RegisterForm = ({ onSubmit }) => {
+const CompleteRegisterForm = ({ onSubmit }) => {
+  const { user } = useApplicationProvider();
   const [showDatePicker, setShowDatePicker] = useState(false);
 
   const theme = useTheme();
 
   const formik = useFormik({
     initialValues: {
-      name: '',
+      name: user?.name,
       birthday: new Date(),
-      email: '',
+      email: user?.email,
       researchParticipant: true,
       isFirstContact: false,
       password: '',
@@ -29,9 +31,7 @@ const RegisterForm = ({ onSubmit }) => {
       birthday: Yup.date().required(
         'Você esqueceu de preencher sua data de nascimento'
       ),
-      email: Yup.string()
-        .email('E-mail inválido')
-        .required('Você esqueceu de preencher o e-mail'),
+      email: Yup.string(),
       isFirstContact: Yup.bool().required(),
       researchParticipant: Yup.bool().required(),
       password: Yup.string()
@@ -70,18 +70,10 @@ const RegisterForm = ({ onSubmit }) => {
 
       <TextInput
         label="E-mail"
-        onChangeText={formik.handleChange('email')}
-        onBlur={formik.handleBlur('email')}
         value={formik.values.email}
-        type="flat"
-        style={styles.input}
+        style={styles.emailInput}
+        disabled
       />
-      <HelperText
-        type="error"
-        visible={!!formik.errors?.email && !!formik.touched?.email}
-      >
-        {formik.errors.email}
-      </HelperText>
 
       <DateField
         value={formatCustomBrDate(new Date(formik.values.birthday))}
@@ -167,8 +159,8 @@ const RegisterForm = ({ onSubmit }) => {
   );
 };
 
-RegisterForm.propTypes = {
+CompleteRegisterForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
 
-export default RegisterForm;
+export default CompleteRegisterForm;
