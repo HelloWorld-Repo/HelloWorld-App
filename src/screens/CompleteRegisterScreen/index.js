@@ -14,7 +14,7 @@ const CompleteRegisterScreen = () => {
   const [loading, setLoading] = useState(false);
 
   const navigation = useNavigation();
-  const { signIn } = useApplicationProvider();
+  const { updateUser } = useApplicationProvider();
 
   const theme = useTheme();
 
@@ -22,11 +22,11 @@ const CompleteRegisterScreen = () => {
     try {
       setLoading(true);
       await UserService.updateUser({ ...user, resetPassword: false });
+      updateUser({ ...user, resetPassword: false });
       setMessage({
         message: 'Usuário cadastrado com sucesso!',
         type: 'success',
       });
-      await signIn(user?.email, user?.password);
       navigation.reset({
         index: 0,
         routes: [{ name: 'Onboarding' }],

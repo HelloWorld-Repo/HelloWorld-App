@@ -8,9 +8,7 @@ const registerUser = async (user) => {
 };
 
 const updateUser = async (user) => {
-  return await api.patch('user', {
-    ...user,
-  });
+  return await api.patch('user', user);
 };
 
 const deleteUser = async () => {
