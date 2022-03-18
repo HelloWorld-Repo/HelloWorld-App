@@ -29,7 +29,7 @@ const RegisterForm = ({ onSubmit }) => {
       birthday: Yup.date().required(
         'Você esqueceu de preencher sua data de nascimento'
       ),
-      email: Yup.string()
+      email: Yup.string().trim()
         .email('E-mail inválido')
         .required('Você esqueceu de preencher o e-mail'),
       isFirstContact: Yup.bool().required(),
