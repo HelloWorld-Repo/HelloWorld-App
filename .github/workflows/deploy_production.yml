@@ -34,7 +34,7 @@ jobs:
           RELEASE_CHANNEL=$(echo ${{ env.GITHUB_REF_SLUG }} | sed -r 's/\.[0-9]+\.[0-9]+$//')
           echo "::set-output name=releaseChannel::$RELEASE_CHANNEL"
       - name: Install Packages
-        run: npm install --production
+        run: npm ci --production
       - name: Get Latest Binary Version # Binary Version will be x.x.x based on the latest tag
         id: latestBinaryVersion
         run: |
