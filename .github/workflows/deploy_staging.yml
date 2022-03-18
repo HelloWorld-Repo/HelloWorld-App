@@ -16,12 +16,12 @@ jobs:
           node-version: 12.x
       - uses: expo/expo-github-action@v5
         with:
-          expo-packager: npm
+          expo-packager: yarn
           expo-username: ${{ secrets.EXPO_CLI_USERNAME }}
           expo-password: ${{ secrets.EXPO_CLI_PASSWORD }}
           expo-cache: true
       - name: Install Packages
-        run: npm install --no-optional
+        run: yarn install
       - name: Expo CLI Install
         run: npm install expo-updates
       - name: Expo Publish Channel
