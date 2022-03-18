@@ -34,7 +34,7 @@ jobs:
           RELEASE_CHANNEL=$(echo ${{ env.GITHUB_REF_SLUG }} | sed -r 's/\.[0-9]+\.[0-9]+$//')
           echo "::set-output name=releaseChannel::$RELEASE_CHANNEL"
       - name: Install Packages
-        run: rm package-lock.json && npm install
+        run: npm install
       - name: Get Latest Binary Version # Binary Version will be x.x.x based on the latest tag
         id: latestBinaryVersion
         run: |
@@ -89,7 +89,7 @@ jobs:
           expo-password: ${{ secrets.EXPO_CLI_PASSWORD }}
           expo-cache: true
       - name: Install Packages
-        run: rm package-lock.json && npm install
+        run: npm install
       - name: Install Expo CLI
         run: npm install expo-updates
       - name: Build Android Release
