@@ -84,7 +84,7 @@ jobs:
       - uses: rlespinasse/github-slug-action@v3.x
       - uses: expo/expo-github-action@v5
         with:
-          expo-packager: npm
+          expo-packager: yarn
           expo-username: ${{ secrets.EXPO_CLI_USERNAME }}
           expo-password: ${{ secrets.EXPO_CLI_PASSWORD }}
           expo-cache: true
