@@ -23,7 +23,7 @@ jobs:
       - name: Install Packages
         run: yarn install
       - name: Expo CLI Install
-        run: npm install expo-updates
+        run: yarn add expo-updates
       - name: Expo Publish Channel
         run: expo publish --non-interactive --release-channel staging
       - name: Add Comment To PR
