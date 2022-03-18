@@ -14,7 +14,7 @@ const negativeImage = require('../../../../../assets/images/heart2.png');
 
 const FeedbackModal = ({ visible = false, onDismiss = () => {} }) => {
   const [selected, setSelected] = useState(null);
-  const [successToast, setSuccessToken] = useState(false);
+  const [successToast, setSuccessToast] = useState(false);
   const [text, setText] = useState('');
   const [error, setError] = useState(null);
 
@@ -29,7 +29,7 @@ const FeedbackModal = ({ visible = false, onDismiss = () => {} }) => {
     FeedbackService.sendFeedback(selected === options.positive, text || ' ')
       .then(() => {
         setUserFeedback();
-        setSuccessToken(true);
+        setSuccessToast(true);
       })
       .catch((error) => {
         setError(error?.message);
@@ -119,7 +119,7 @@ const FeedbackModal = ({ visible = false, onDismiss = () => {} }) => {
         <Toast
           message="Obrigado pela sua colaboração!"
           visible={!!successToast}
-          onDismiss={() => setError(null)}
+          onDismiss={() => setSuccessToast(null)}
           toastStyle={styles.successToast}
         />
       </Portal>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { HelperText, TextInput } from 'react-native-paper';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import moment from 'moment';
 
 import { DateField } from '../../../../components';
 import { formatCustomBrDate } from '../../../../utils';

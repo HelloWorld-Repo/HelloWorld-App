@@ -65,10 +65,16 @@ const QuestionScreen = ({ route, navigation }) => {
           await ChapterService.saveChapterDone(question.chapterId);
           await increaseUserLevel();
         }
-
         navigation.reset({
           index: 0,
-          routes: [{ name: 'Tabs', params: { completedChapter } }],
+          routes: [
+            {
+              name: 'Tabs',
+              params: {
+                completedChapter: completedChapter ? 'success' : 'failure',
+              },
+            },
+          ],
         });
       } catch (error) {
         console.error(error);
@@ -141,7 +147,7 @@ const QuestionScreen = ({ route, navigation }) => {
           )}
         </View>
         <Text style={styles.qttText}>{`Escolha ${correctLength} ${
-          options.length !== 1 ? 'opções' : 'opção'
+          correctLength !== 1 ? 'opções' : 'opção'
         }:`}</Text>
 
         {options.map((option) => (
