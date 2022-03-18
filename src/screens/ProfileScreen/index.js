@@ -70,7 +70,7 @@ const ProfileScreen = () => {
   const onSubmitUpdate = async (data) => {
     try {
       setLoading(true);
-      const { user } = await UserService.updateUser(data);
+      const { dataValues: user } = await UserService.updateUser(data);
       setLoading(false);
 
       await updateUser(user);

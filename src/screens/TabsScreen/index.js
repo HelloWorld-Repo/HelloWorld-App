@@ -8,9 +8,9 @@ import { useApplicationProvider } from '../../providers/ApplicationProvider';
 import StoryScreen from '../StoryScreen';
 import ProfileScreen from '../ProfileScreen';
 import SuccessModal from './components/SuccessModal';
-import DevelopingScreen from '../DevelopingScreen';
 import QuestionFilterScreen from '../QuestionFilterScreen';
 import AbstractScreen from '../AbstractScreen';
+import FailureModal from './components/FailureModal';
 
 const houseIcon = require('../../../assets/icons/house.png');
 const graphIcon = require('../../../assets/icons/graph.png');
@@ -21,7 +21,7 @@ const starIcon = require('../../../assets/icons/star.png');
 const TabsScreen = ({ route }) => {
   const [index, setIndex] = useState(0);
   const [completedModalVisible, setCompletedModalVisible] = useState(
-    !!route?.params?.completedChapter
+    route?.params?.completedChapter
   );
   const { user } = useApplicationProvider();
   const theme = useTheme();
@@ -76,9 +76,14 @@ const TabsScreen = ({ route }) => {
         barStyle={styles.bar}
       />
       <SuccessModal
-        visible={completedModalVisible}
-        onDismiss={() => setCompletedModalVisible(false)}
+        visible={completedModalVisible === "success"}
+        onDismiss={() => setCompletedModalVisible(null)}
       ></SuccessModal>
+
+      <FailureModal
+        visible={completedModalVisible === "failure"}
+        onDismiss={() => setCompletedModalVisible(null)}
+      ></FailureModal>
     </>
   );
 };
