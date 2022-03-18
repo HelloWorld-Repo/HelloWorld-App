@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BottomNavigation, Text, useTheme, Appbar } from 'react-native-paper';
+import {Text, useTheme, Appbar, BottomNavigation } from 'react-native-paper';
 import { Image, View } from 'react-native';
 
 import styles from './style';

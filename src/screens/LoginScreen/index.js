@@ -12,13 +12,14 @@ import * as Yup from 'yup';
 import { SafeAreaAndroid, Toast } from '../../components';
 import styles from './index.style';
 import LoginForm from './components/LoginForm';
-import AuthService from '../../services/AuthService';
 import { useApplicationProvider } from '../../providers/ApplicationProvider';
-import { Link } from '@react-navigation/native';
 
 const LoginSchema = Yup.object().shape({
   password: Yup.string().required('Preencha a senha'),
-  email: Yup.string().email('E-mail inválido').required('Preencha o e-mail'),
+  email: Yup.string()
+    .trim()
+    .email('E-mail inválido')
+    .required('Preencha o e-mail'),
 });
 
 const LoginScreen = ({ navigation }) => {
@@ -62,7 +63,9 @@ const LoginScreen = ({ navigation }) => {
           </Paragraph>
           <Formik
             initialValues={{ email: '', password: '' }}
-            onSubmit={(values) => onSubmitLogin(values)}
+            onSubmit={(values) =>
+              onSubmitLogin({ ...values, email: values.email.trim() })
+            }
             validationSchema={LoginSchema}
           >
             {({

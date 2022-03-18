@@ -25,7 +25,7 @@ const RegisterForm = ({ onSubmit }) => {
       confirmPassword: '',
     },
     validationSchema: Yup.object().shape({
-      name: Yup.string().required('Você esqueceu de preencher seu nome'),
+      name: Yup.string().trim().required('Você esqueceu de preencher seu nome'),
       birthday: Yup.date().required(
         'Você esqueceu de preencher sua data de nascimento'
       ),
@@ -43,7 +43,11 @@ const RegisterForm = ({ onSubmit }) => {
         .oneOf([Yup.ref('password'), null], 'A senhas estão diferentes'),
     }),
     onSubmit: (values) =>
-      onSubmit({ ...values, birthday: formatCustomEnDate(values.birthday) }),
+      onSubmit({
+        ...values,
+        birthday: formatCustomEnDate(values.birthday),
+        email: email.trim(),
+      }),
   });
 
   const onChangeHandler = (date) => {
