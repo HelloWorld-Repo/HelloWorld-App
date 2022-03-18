@@ -46,7 +46,7 @@ const RegisterForm = ({ onSubmit }) => {
       onSubmit({
         ...values,
         birthday: formatCustomEnDate(values.birthday),
-        email: email.trim(),
+        email: values.email.trim(),
       }),
   });
 
