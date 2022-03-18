@@ -21,7 +21,7 @@ jobs:
           expo-password: ${{ secrets.EXPO_CLI_PASSWORD }}
           expo-cache: true
       - name: Install Packages
-        run: npm ci
+        run: npm install --no-optional
       - name: Expo CLI Install
         run: npm install expo-updates
       - name: Expo Publish Channel
