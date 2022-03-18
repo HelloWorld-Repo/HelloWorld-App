@@ -23,7 +23,7 @@ jobs:
           node-version: 12.x
       - uses: expo/expo-github-action@v5
         with:
-          expo-packager: yarn
+          expo-packager: npm
           expo-username: ${{ secrets.EXPO_CLI_USERNAME }}
           expo-password: ${{ secrets.EXPO_CLI_PASSWORD }}
           expo-cache: true
@@ -34,7 +34,7 @@ jobs:
           RELEASE_CHANNEL=$(echo ${{ env.GITHUB_REF_SLUG }} | sed -r 's/\.[0-9]+\.[0-9]+$//')
           echo "::set-output name=releaseChannel::$RELEASE_CHANNEL"
       - name: Install Packages
-        run: yarn install
+        run: npm install
       - name: Get Latest Binary Version # Binary Version will be x.x.x based on the latest tag
         id: latestBinaryVersion
         run: |
@@ -48,7 +48,7 @@ jobs:
           echo Latest release is ${{ steps.latestBinaryVersion.outputs.version }}
 
       - name: Expo CLI Install
-        run: yarn add expo-updates
+        run: npm install expo-updates
       - name: Expo Publish Channel
         run: expo publish --non-interactive --release-channel=${{ steps.releaseChannel.outputs.releaseChannel }}
 
@@ -84,14 +84,14 @@ jobs:
       - uses: rlespinasse/github-slug-action@v3.x
       - uses: expo/expo-github-action@v5
         with:
-          expo-packager: yarn
+          expo-packager: npm
           expo-username: ${{ secrets.EXPO_CLI_USERNAME }}
           expo-password: ${{ secrets.EXPO_CLI_PASSWORD }}
           expo-cache: true
       - name: Install Packages
-        run: yarn
+        run: npm install
       - name: Install Expo CLI
-        run: yarn add expo-updates
+        run: npm install expo-updates
       - name: Build Android Release
         env:
           APP_BUILD_VERSION: ${{ github.run_number }}
