@@ -1,20 +1,34 @@
-# Tab navigation example
+# HelloWorld
 
-<p>
-  <!-- iOS -->
-  <img alt="Supports Expo iOS" longdesc="Supports Expo iOS" src="https://img.shields.io/badge/iOS-4630EB.svg?style=flat-square&logo=APPLE&labelColor=999999&logoColor=fff" />
-  <!-- Android -->
-  <img alt="Supports Expo Android" longdesc="Supports Expo Android" src="https://img.shields.io/badge/Android-4630EB.svg?style=flat-square&logo=ANDROID&labelColor=A4C639&logoColor=fff" />
-  <!-- Web -->
-  <img alt="Supports Expo Web" longdesc="Supports Expo Web" src="https://img.shields.io/badge/web-4630EB.svg?style=flat-square&logo=GOOGLE-CHROME&labelColor=4285F4&logoColor=fff" />
-</p>
+## O que é o HelloWorld?
 
-## 🚀 How to use
+HelloWorld é uma aplicação para dispositivos móveis Android. Através dela você consegue aprender lógica de programação gratuitamente e **totalmente** em português.
 
-- Install with `yarn` or `npm install`.
-- Run `expo start` to try it out.
+Além disso, possui um site de gerenciamento de conteúdo que permite uma atualização rápida e constante de todo o conteúdo do aplicativo (módulos, capítulos, questões, etc).
 
-## 📝 Notes
+### Diferenciais
 
-- This is a very basic example from the [react navigation](https://reactnavigation.org/) docs.
-- [Tab navigation documentation](https://reactnavigation.org/docs/tab-based-navigation).
+Os principais diferenciais desse aplictivo são:
+
+- Foco não apenas no conteúdo, como no incentivo do usuário em utilizá-lo;
+- **Todo em português**, incluindo os códigos;
+- Várias questões por módulo e capítulo, e
+- Completamente gratuito.
+
+## Onde Baixar?
+
+O aplicativo pode ser baixado nesse [site](https://helloworld.gq). Para instalá-lo, será necessário permitir a instalação de apps terceiros no seu celular.
+
+## Sobre o Sistema
+
+Esse sistema foi desenvolvido como objeto de entrega para um Trabalho de Conclusão de Curso de Engenharia de Software na Universidade de Brasília.
+
+Ele é composto por: 
+- uma [aplicação para dispositivos móveis](https://github.com/HelloWorld-Repo/HelloWorld-App);
+- um [Website](https://github.com/HelloWorld-Repo/HelloWorld-Webb), onde pode baixar o app e fazer o gerenciamento de conteúdo (com o devido acesso), e
+- uma [API](https://github.com/HelloWorld-Repo/HelloWorld-API), responsável por realizar as devidas comunicações com o servidor.
+
+## Sobre a Desenvolvedora
+|  Foto  |  Sobre  |  
+| -- | -- |
+| <img src="https://user-images.githubusercontent.com/36926637/159136497-9ce5eaa9-37c5-4546-84ed-f432b53f0041.png" alt="Foto da desenvolvedora" width="200" style="object-fit: cover"/> | Estudante do último semestre de Engenharia de Software pela Universidade de Brasília (UnB), nascida em 1998 na mesma cidade que reside, Brasília.  |
