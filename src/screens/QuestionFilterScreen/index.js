@@ -40,7 +40,7 @@ const QuestionFilterScreen = () => {
 
     setData({ chapters: chaptersData, modules: modulesData });
   };
-  
+
   useEffect(() => {
     if (!!moduleSelected) {
       const chaptersTemp = [];
@@ -107,6 +107,7 @@ const QuestionFilterScreen = () => {
             <Text style={styles.title}>Questões</Text>
 
             <PickerSelect
+              fixAndroidTouchableBug
               onValueChange={(value) => setModuleSelected(value)}
               items={data?.modules || []}
               value={moduleSelected}
@@ -118,6 +119,7 @@ const QuestionFilterScreen = () => {
               }}
             />
             <PickerSelect
+              fixAndroidTouchableBug
               onValueChange={(value) => setChapterSelected(value)}
               items={data?.chapters || []}
               value={chapterSelected}
@@ -127,6 +129,7 @@ const QuestionFilterScreen = () => {
               style={{ inputAndroid: styles.select }}
             />
             <PickerSelect
+              fixAndroidTouchableBug
               onValueChange={(value) => setTypeSelected(value)}
               items={[
                 { label: 'Múltipla Escolha', value: '1' },
