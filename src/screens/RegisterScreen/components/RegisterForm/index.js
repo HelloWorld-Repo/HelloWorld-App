@@ -11,6 +11,8 @@ import styles from './index.style';
 
 const RegisterForm = ({ onSubmit }) => {
   const [showDatePicker, setShowDatePicker] = useState(false);
+  const [hidePassword, setHidePassword] = useState(true);
+  const [hideConfirmPassword, setHideConfirmPassword] = useState(true);
 
   const theme = useTheme();
 
@@ -29,7 +31,8 @@ const RegisterForm = ({ onSubmit }) => {
       birthday: Yup.date().required(
         'Você esqueceu de preencher sua data de nascimento'
       ),
-      email: Yup.string().trim()
+      email: Yup.string()
+        .trim()
         .email('E-mail inválido')
         .required('Você esqueceu de preencher o e-mail'),
       isFirstContact: Yup.bool().required(),
@@ -116,7 +119,13 @@ const RegisterForm = ({ onSubmit }) => {
         onBlur={formik.handleBlur('password')}
         value={formik.values.password}
         type="flat"
-        secureTextEntry
+        secureTextEntry={hidePassword}
+        right={
+          <TextInput.Icon
+            name={hidePassword ? 'eye' : 'eye-off'}
+            onPress={() => setHidePassword(!hidePassword)}
+          />
+        }
         style={styles.input}
       />
       <HelperText
@@ -132,7 +141,13 @@ const RegisterForm = ({ onSubmit }) => {
         onBlur={formik.handleBlur('confirmPassword')}
         value={formik.values.confirmPassword}
         type="flat"
-        secureTextEntry
+        secureTextEntry={hideConfirmPassword}
+        right={
+          <TextInput.Icon
+            name={hideConfirmPassword ? 'eye' : 'eye-off'}
+            onPress={() => setHideConfirmPassword(!hideConfirmPassword)}
+          />
+        }
         style={styles.input}
       />
       <HelperText
