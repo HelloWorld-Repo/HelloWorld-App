@@ -1,9 +1,9 @@
 import React from 'react';
 import { View } from 'react-native';
 import PropTypes from 'prop-types';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Button as PaperButton, Text, useTheme } from 'react-native-paper';
 
-import { Button } from '../../../../components';
 import styles from './style';
 
 const Option = ({ option, isSelected, onSelect, disabled }) => {
@@ -11,24 +11,31 @@ const Option = ({ option, isSelected, onSelect, disabled }) => {
   return (
     <View>
       {isSelected ? (
-        <PaperButton
-          disabled
-          uppercase={false}
-          style={styles.buttonSelected(option.isRight)}
-        >
-          <Text style={styles.selectedText}>{option.text}</Text>
-        </PaperButton>
+        <>
+          <Text style={styles.feedbackText(option.isRight)}>
+            {option.isRight ? 'Opção correta' : 'Opção incorreta'}
+          </Text>
+          <PaperButton
+            disabled
+            uppercase={false}
+            style={styles.buttonSelected(option.isRight)}
+          >
+            <Text style={styles.selectedText}>
+              {option.text}
+            </Text>
+          </PaperButton>
+        </>
       ) : (
-        <Button
-          text={option.text}
-          backgroundColor={theme.colors.background}
-          backgroundDarker={theme.colors.disabled}
-          textColor={theme.colors.textSecondary}
-          full
-          onPress={() => onSelect(option)}
-          raiseLevel={2}
+        <TouchableOpacity
           disabled={disabled}
-        />
+          uppercase={false}
+          style={styles.buttonUnselected}
+          onPress={() => onSelect(option)}
+        >
+          <Text style={styles.selectedText}>
+            {option.text}
+          </Text>
+        </TouchableOpacity>
       )}
     </View>
   );
