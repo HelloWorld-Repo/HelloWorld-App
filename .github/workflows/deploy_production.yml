@@ -64,7 +64,7 @@ jobs:
         uses: metcalfc/changelog-generator@v0.4.0
         with:
           myToken: ${{ secrets.GITHUB_TOKEN }}
-          base-ref: 'prod-0'
+          base-ref: 'prod-[0-9]+.[0-9]+.[0-9]+'
       - name: Creating Release
         uses: ncipollo/release-action@v1
         with:
